@@ -1,4 +1,3 @@
-
 import com.example.ktor.project.AndroidProject
 import com.example.ktor.project.Dependencies
 import com.example.ktor.project.Modules
@@ -35,10 +34,10 @@ android {
 
 dependencies {
     implementation(kotlin("stdlib"))
-    implementation(Dependencies.Logger.core)
-    implementation(Dependencies.Kotlin.Serialization.json)
-    implementation(Dependencies.Kotlin.Serialization.ktor)
-    api(Dependencies.Api.Ktor.core)
-    api(Dependencies.Api.Ktor.logging)
+
+    implementation(Dependencies.AndroidX.Compose.ui)
+    implementation(Dependencies.AndroidX.Core.coreKtx)
+    implementation(Dependencies.Navigation.navigationCompose)
+
     implementation(project(Modules.Core.std))
 }

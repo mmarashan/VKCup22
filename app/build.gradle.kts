@@ -1,7 +1,8 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 import com.example.ktor.project.AndroidProject
 import com.example.ktor.project.Dependencies
 import com.example.ktor.project.Modules
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     id("com.android.application")
@@ -67,11 +68,12 @@ dependencies {
     implementation(Dependencies.Koin.core)
     implementation(Dependencies.Koin.android)
 
-    implementation(Dependencies.Navigation.navComponent)
+    implementation(Dependencies.Navigation.navigationCompose)
 
     implementation(Dependencies.Logger.core)
     implementation(Dependencies.Koin.compose)
-    implementation(project(Modules.Feature.pricesList))
-    implementation(project(Modules.Feature.cryptoDetails))
+
+    implementation(project(Modules.Feature.cryptoAssetsList))
     implementation(project(Modules.Core.messariApi))
+    implementation(project(Modules.Core.featureApi))
 }

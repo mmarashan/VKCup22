@@ -10,6 +10,7 @@ buildscript {
         classpath(dependencyNotation = com.example.ktor.project.BuildPlugins.gradle)
         classpath(dependencyNotation = com.example.ktor.project.BuildPlugins.Kotlin.core)
         classpath(dependencyNotation = com.example.ktor.project.BuildPlugins.Kotlin.serialization)
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.7.20")
     }
 }
 

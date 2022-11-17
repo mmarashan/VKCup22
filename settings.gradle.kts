@@ -1,4 +1,19 @@
 rootProject.name = "Ktor example"
 
-include(":app", ":core:network", ":core:std", "feature:prices_list", ":feature:details", ":core:messari_api")
+/* App */
+include(
+    ":app"
+)
 
+/* Core */
+include(
+    ":core:network",
+    ":core:std",
+    ":core:feature-api",
+    ":core:messari-api",
+)
+
+/* Feature */
+include(
+    ":feature:crypto-assets-list"
+)
