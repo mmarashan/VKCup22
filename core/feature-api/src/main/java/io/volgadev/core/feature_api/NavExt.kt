@@ -4,12 +4,12 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 
-fun NavGraphBuilder.register(
+fun NavGraphBuilder.registerFeature(
     featureApi: FeatureApi,
     navController: NavHostController,
     modifier: Modifier = Modifier
 ) {
-    featureApi.registerGraph(
+    featureApi.registerInGraph(
         navGraphBuilder = this,
         navController = navController,
         modifier = modifier

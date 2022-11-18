@@ -1,6 +1,6 @@
+
 import io.volgadev.sampleapp.project.AndroidProject
 import io.volgadev.sampleapp.project.Dependencies
-import io.volgadev.sampleapp.project.Modules
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -33,11 +33,7 @@ android {
 }
 
 dependencies {
-    implementation(kotlin("stdlib"))
-
     implementation(Dependencies.AndroidX.Compose.ui)
     implementation(Dependencies.AndroidX.Core.coreKtx)
     implementation(Dependencies.Navigation.navigationCompose)
-
-    implementation(project(Modules.Core.common))
 }

@@ -1,4 +1,4 @@
-package io.volgadev.sampleapp.core.std
+package io.volgadev.core.result
 
 
 /**

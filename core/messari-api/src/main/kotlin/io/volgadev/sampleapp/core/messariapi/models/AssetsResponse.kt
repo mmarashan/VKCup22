@@ -2,12 +2,12 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class PricesResponse(
-    @SerialName("data") val prices: List<PriceDto>
+data class AssetsResponse(
+    @SerialName("data") val prices: List<AssetDto>
 )
 
 @Serializable
-data class PriceDto(
+data class AssetDto(
     @SerialName("id") val id: String,
     @SerialName("metrics") val metrics: MetricsDto,
     @SerialName("symbol") val symbol: String

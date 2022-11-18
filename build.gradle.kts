@@ -1,4 +1,3 @@
-
 buildscript {
     repositories {
         mavenCentral()
@@ -7,9 +6,9 @@ buildscript {
     }
 
     dependencies {
-        classpath(dependencyNotation = com.example.ktor.project.BuildPlugins.gradle)
-        classpath(dependencyNotation = com.example.ktor.project.BuildPlugins.Kotlin.core)
-        classpath(dependencyNotation = com.example.ktor.project.BuildPlugins.Kotlin.serialization)
+        classpath(dependencyNotation = io.volgadev.sampleapp.project.BuildPlugins.gradle)
+        classpath(dependencyNotation = io.volgadev.sampleapp.project.BuildPlugins.Kotlin.core)
+        classpath(dependencyNotation = io.volgadev.sampleapp.project.BuildPlugins.Kotlin.serialization)
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.7.20")
     }
 }

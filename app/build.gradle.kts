@@ -1,7 +1,7 @@
 
-import com.example.ktor.project.AndroidProject
-import com.example.ktor.project.Dependencies
-import com.example.ktor.project.Modules
+import io.volgadev.sampleapp.project.AndroidProject
+import io.volgadev.sampleapp.project.Dependencies
+import io.volgadev.sampleapp.project.Modules
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -59,6 +59,7 @@ dependencies {
     implementation(Dependencies.AndroidX.Compose.materialIcons)
     implementation(Dependencies.AndroidX.Compose.material)
     implementation(Dependencies.AndroidX.Compose.tooling)
+    implementation(Dependencies.AndroidX.Accompanist.insets)
 
     implementation(Dependencies.Api.Ktor.core)
     implementation(Dependencies.Api.Ktor.logging)

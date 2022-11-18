@@ -8,7 +8,7 @@ include(
 /* Core */
 include(
     ":core:network",
-    ":core:std",
+    ":core:common",
     ":core:feature-api",
     ":core:messari-api",
 )

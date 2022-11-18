@@ -1,6 +1,6 @@
 package io.volgadev.sampleapp.core.network
 
-import io.volgadev.sampleapp.core.std.Result
+import io.volgadev.core.result.Result
 import io.ktor.client.features.ClientRequestException
 import io.ktor.client.features.ServerResponseException
 import io.ktor.client.statement.readText

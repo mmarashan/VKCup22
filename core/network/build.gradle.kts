@@ -1,7 +1,7 @@
 
-import com.example.ktor.project.AndroidProject
-import com.example.ktor.project.Dependencies
-import com.example.ktor.project.Modules
+import io.volgadev.sampleapp.project.AndroidProject
+import io.volgadev.sampleapp.project.Dependencies
+import io.volgadev.sampleapp.project.Modules
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -40,5 +40,5 @@ dependencies {
     implementation(Dependencies.Kotlin.Serialization.ktor)
     api(Dependencies.Api.Ktor.core)
     api(Dependencies.Api.Ktor.logging)
-    implementation(project(Modules.Core.std))
+    implementation(project(Modules.Core.common))
 }

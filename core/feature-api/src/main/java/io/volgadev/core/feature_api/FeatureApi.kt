@@ -6,7 +6,7 @@ import androidx.navigation.NavHostController
 
 interface FeatureApi {
 
-    fun registerGraph(
+    fun registerInGraph(
         navGraphBuilder: NavGraphBuilder,
         navController: NavHostController,
         modifier: Modifier = Modifier

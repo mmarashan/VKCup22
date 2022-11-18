@@ -1,8 +1,6 @@
 package io.volgadev.sampleapp.di
 
 import kotlinx.serialization.json.Json as SerializationJson
-import io.volgadev.sampleapp.BuildConfig
-import com.example.ktor.core.messariapi.MessariApi
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.android.Android
 import io.ktor.client.features.DefaultRequest
@@ -12,12 +10,14 @@ import io.ktor.client.features.logging.LogLevel
 import io.ktor.client.features.logging.Logger
 import io.ktor.client.features.logging.Logging
 import io.ktor.client.request.header
+import io.volgadev.sampleapp.BuildConfig
+import io.volgadev.sampleapp.core.messariapi.MessariApi
 import org.koin.dsl.module
 import timber.log.Timber
 
 private const val TIME_OUT = 60_000
 
-val networkModule = module {
+val NetworkModule = module {
     single { MessariApi(configureMessaryClient()) }
 }
 
