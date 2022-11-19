@@ -1,7 +1,7 @@
 package io.volgadev.sampleapp.feature.prices_list.data
 
-import io.volgadev.sampleapp.core.messariapi.MessariApi
 import io.volgadev.core.result.Result
+import io.volgadev.sampleapp.core.messariapi.MessariApi
 import io.volgadev.sampleapp.feature.prices_list.data.mapper.AssetsMapper
 import io.volgadev.sampleapp.feature.prices_list.domain.PricesRepository
 import io.volgadev.sampleapp.feature.prices_list.domain.model.CryptoAsset

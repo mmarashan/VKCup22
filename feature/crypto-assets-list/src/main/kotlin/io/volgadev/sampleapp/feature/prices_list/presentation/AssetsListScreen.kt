@@ -1,18 +1,13 @@
 package io.volgadev.sampleapp.feature.prices_list.presentation
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
-import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Card
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -45,8 +40,11 @@ internal fun AssetsListScreen(
                 onClickItem = {}
             )
         }
-        AssetsListScreenState.Error -> TODO()
-        AssetsListScreenState.Loading -> TODO()
+        AssetsListScreenState.Error -> {
+        }
+        AssetsListScreenState.Loading -> {
+
+        }
     }
 }
 
@@ -56,31 +54,51 @@ private fun AssetsListScreen(
     items: List<CryptoAsset>,
     onClickItem: (CryptoAsset) -> Unit
 ) {
-    Column(modifier) {
-        Spacer(modifier = Modifier.height(8.dp))
-        PriceListHeader()
-        LazyColumn {
-            itemsIndexed(
-                items,
-                { _, CryptoAsset -> CryptoAsset.id }) { index, asset ->
-                Row(
-                    Modifier
-                        .background(if (index % 2 == 0) Color.LightGray else MaterialTheme.colors.background)
-                        .fillParentMaxWidth()
-                        .clickable { onClickItem(asset) }
-                        .padding(vertical = 16.dp)
-
-                ) {
-                    Row(Modifier.width(150.dp)) {
-                        Spacer(Modifier.width(8.dp))
-                        Text(text = index.inc().toString(), modifier = Modifier.width(32.dp))
-                        Text(text = asset.name)
-                    }
-                    Text(text = asset.price.toString())
-                }
-            }
+    LazyColumn(modifier) {
+        item {
+            PriceListHeader()
+        }
+        itemsIndexed(
+            items,
+            { _, asset -> asset.id }) { index, asset ->
+            AssetsListItem(
+                modifier = Modifier
+                    .fillParentMaxWidth()
+                    .clickable { onClickItem(asset) }
+                    .padding(vertical = 16.dp),
+                asset = asset
+            )
         }
     }
+}
+
+@Composable
+private fun AssetsListItem(
+    modifier: Modifier,
+    asset: CryptoAsset
+) {
+    Card(
+        modifier
+    ) {
+        Row(
+            modifier = Modifier.padding(
+                horizontal = 16.dp,
+                vertical = 4.dp
+            )
+        ) {
+            Text(
+                modifier = Modifier
+                    .weight(1f, true),
+                text = asset.name
+            )
+            Text(
+                modifier = Modifier
+                    .weight(1f, true),
+                text = asset.price.toString()
+            )
+        }
+    }
+
 }
 
 @Composable
@@ -90,15 +108,20 @@ private fun PriceListHeader() {
             .fillMaxWidth()
             .border(width = 2.dp, color = Color.Gray)
     ) {
-        Spacer(modifier = Modifier.width(8.dp))
-        Text(
-            text = stringResource(R.string.asset_name_title),
-            modifier = Modifier.width(150.dp)
-        )
-        Text(
-            text = stringResource(R.string.asset_price_title),
-            modifier = Modifier.width(120.dp)
-        )
+        Row(
+            Modifier
+                .fillMaxWidth()
+                .padding(vertical = 2.dp, horizontal = 16.dp)
+        ) {
+            Text(
+                text = stringResource(R.string.asset_name_title),
+                modifier = Modifier.weight(1f, true)
+            )
+            Text(
+                text = stringResource(R.string.asset_price_title),
+                modifier = Modifier.weight(1f, true)
+            )
+        }
     }
 }
 

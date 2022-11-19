@@ -2,7 +2,6 @@
 import io.volgadev.sampleapp.project.AndroidProject
 import io.volgadev.sampleapp.project.Dependencies
 import io.volgadev.sampleapp.project.Modules
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     id("com.android.library")
@@ -12,25 +11,12 @@ plugins {
 }
 
 android {
-
     compileSdk = AndroidProject.compileSdkVersion
-    buildToolsVersion = AndroidProject.buildToolsVersion
-
     defaultConfig {
         minSdk = AndroidProject.minSdkVersion
         targetSdk = AndroidProject.targetSdkVersion
     }
 
-    java {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
-
-    tasks.withType<KotlinCompile> {
-        kotlinOptions {
-            jvmTarget = "1.8"
-        }
-    }
     buildFeatures {
         compose = true
     }
@@ -53,9 +39,6 @@ dependencies {
     implementation(Dependencies.AndroidX.Compose.tooling)
     implementation(Dependencies.AndroidX.Compose.toolingPreview)
     implementation(Dependencies.AndroidX.Compose.activity)
-    //Временный Workaround  обхода https://issuetracker.google.com/issues/227767363
-    debugImplementation("androidx.customview:customview:1.2.0-alpha01")
-    debugImplementation("androidx.customview:customview-poolingcontainer:1.0.0-beta02")
 
     implementation(project(Modules.Core.messariApi))
     implementation(project(Modules.Core.common))

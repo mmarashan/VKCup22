@@ -2,6 +2,7 @@ package io.volgadev.sampleapp.feature.prices_list.presentation
 
 import androidx.lifecycle.viewModelScope
 import io.volgadev.core.architecture.SEAViewModel
+import io.volgadev.core.result.Result
 import io.volgadev.sampleapp.feature.prices_list.domain.PricesRepository
 import io.volgadev.sampleapp.feature.prices_list.domain.model.CryptoAsset
 import io.volgadev.sampleapp.feature.prices_list.presentation.model.AssetsListScreenAction
@@ -25,7 +26,14 @@ internal class AssetsListViewModel(
 
     private fun onStart() {
         viewModelScope.launch {
-            pricesRepository.loadAssets()
+            when (val assetsRequestResult = pricesRepository.loadAssets()) {
+                is Result.Error -> {
+                    setState(AssetsListScreenState.Error)
+                }
+                is Result.Success -> {
+                    setState(AssetsListScreenState.Content(items = assetsRequestResult.value))
+                }
+            }
         }
     }
 
