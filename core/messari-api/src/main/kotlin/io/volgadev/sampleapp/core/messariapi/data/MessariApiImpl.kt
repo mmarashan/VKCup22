@@ -1,19 +1,20 @@
-package io.volgadev.sampleapp.core.messariapi
+package io.volgadev.sampleapp.core.messariapi.data
 
 import AssetsResponse
 import io.ktor.client.HttpClient
 import io.ktor.client.request.get
 import io.ktor.client.request.parameter
 import io.ktor.client.request.url
+import io.volgadev.core.result.Result
 import io.volgadev.sampleapp.core.network.ApiResponseFailure
 import io.volgadev.sampleapp.core.network.safeRequest
-import io.volgadev.core.result.Result
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class MessariApi(private val client: HttpClient) {
 
-    suspend fun loadAssets(): Result<AssetsResponse, ApiResponseFailure> {
+internal class MessariApiImpl(private val client: HttpClient) : MessariApi {
+
+    override suspend fun loadAssets(): Result<AssetsResponse, ApiResponseFailure> {
         return withContext(Dispatchers.IO) {
             safeRequest {
                 client.get {

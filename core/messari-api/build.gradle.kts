@@ -24,5 +24,7 @@ dependencies {
     api(project(Modules.Core.network))
     implementation(project(Modules.Core.common))
     implementation(Dependencies.Kotlin.Serialization.json)
+    implementation(Dependencies.Koin.core)
+    implementation(Dependencies.Koin.android)
 }
 

@@ -1,7 +1,8 @@
 package io.volgadev.sampleapp
 
 import android.app.Application
-import io.volgadev.sampleapp.di.NetworkModule
+import io.volgadev.sampleapp.core.messariapi.di.MessariApiModule
+import io.volgadev.sampleapp.di.AppModule
 import io.volgadev.sampleapp.feature.prices_list.di.AssetsListModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
@@ -16,8 +17,14 @@ class App : Application() {
         startKoin {
             androidContext(this@App)
             modules(
+                /* app */
+                AppModule,
+
+                /* core */
+                MessariApiModule,
+
+                /* feature */
                 AssetsListModule,
-                NetworkModule
             )
         }
     }
