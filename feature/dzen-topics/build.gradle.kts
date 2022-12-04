@@ -7,7 +7,7 @@ plugins {
     id("com.android.library")
     id("kotlinx-serialization")
     id("kotlin-parcelize")
-    kotlin(module = "android")
+    kotlin("android")
 }
 
 android {

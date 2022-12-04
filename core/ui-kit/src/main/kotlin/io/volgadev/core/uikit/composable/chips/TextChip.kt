@@ -22,22 +22,18 @@ import io.volgadev.core.uikit.theme.AppColors
 fun TextChip(
     modifier: Modifier = Modifier,
     text: String,
-    enabled: Boolean = true,
     cornerRadiusDp: Dp = 20.dp,
     backgroundColor: Color = AppColors.grayBackground,
     fontSize: TextUnit = TextUnit.Unspecified,
     textColor: Color = AppColors.whiteText,
     textStyle: TextStyle = TextStyle(),
     verticalTextPadding: Dp = 6.dp,
-    horizontalTextPadding: Dp = 12.dp,
-    onClick: () -> Unit = { }
+    horizontalTextPadding: Dp = 12.dp
 ) {
     Chip(
         modifier = modifier,
         cornerRadiusDp = cornerRadiusDp,
-        enabled = enabled,
         backgroundColor = backgroundColor,
-        onClick = onClick
     ) {
         Text(
             text = text,

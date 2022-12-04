@@ -7,7 +7,6 @@ include(
 
 /* Core */
 include(
-    ":core:network",
     ":core:common",
     ":core:feature-api",
     ":core:ui-kit"

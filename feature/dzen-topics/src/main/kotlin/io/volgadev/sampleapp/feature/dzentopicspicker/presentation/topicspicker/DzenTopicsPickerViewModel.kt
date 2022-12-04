@@ -31,13 +31,30 @@ internal class DzenTopicsPickerViewModel(
                     setState(DzenTopicsPickerScreenState.Error)
                 }
                 is Result.Success -> {
-                    setState(DzenTopicsPickerScreenState.Content(items = assetsRequestResult.value))
+                    setState(
+                        DzenTopicsPickerScreenState.Content(
+                            items = itemsToInitialMap(assetsRequestResult.value)
+                        )
+                    )
                 }
             }
         }
     }
 
-    private fun onItemClicked(item: Topic) {
+    private fun itemsToInitialMap(items: List<Topic>): Map<Topic, Boolean> {
+        return items.associateWith { false }
+    }
 
+    private fun onItemClicked(item: Topic) {
+        val state = getStateValueOrNull() as? DzenTopicsPickerScreenState.Content ?: return
+
+        val items = state.items.toMutableMap()
+        val currentPickerValue: Boolean = items[item] ?: false
+        items[item] = !currentPickerValue
+        setState(
+            DzenTopicsPickerScreenState.Content(
+                items = items
+            )
+        )
     }
 }

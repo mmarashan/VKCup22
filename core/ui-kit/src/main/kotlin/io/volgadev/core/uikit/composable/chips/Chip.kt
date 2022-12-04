@@ -1,8 +1,6 @@
 package io.volgadev.core.uikit.composable.chips
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
@@ -14,7 +12,6 @@ import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -28,27 +25,17 @@ import io.volgadev.core.uikit.theme.AppColors
  * @param modifier
  * @param backgroundColor
  * @param cornerRadiusDp
- * @param enabled
  * @param content
- * @param onClick
  */
 @Composable
 fun Chip(
     modifier: Modifier = Modifier,
     backgroundColor: Color = AppColors.grayBackground,
     cornerRadiusDp: Dp = 20.dp,
-    enabled: Boolean = true,
-    onClick: () -> Unit = { },
     content: @Composable BoxScope.() -> Unit
 ) {
     Box(
         modifier = modifier
-            .clickable(
-                enabled = enabled,
-                interactionSource = remember { MutableInteractionSource() },
-                indication = null,
-                onClick = onClick
-            )
             .background(
                 color = backgroundColor,
                 shape = RoundedCornerShape(cornerRadiusDp)

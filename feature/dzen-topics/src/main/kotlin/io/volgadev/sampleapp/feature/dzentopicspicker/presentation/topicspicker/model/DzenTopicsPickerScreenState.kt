@@ -5,7 +5,7 @@ import io.volgadev.sampleapp.feature.dzentopicspicker.domain.model.Topic
 internal sealed class DzenTopicsPickerScreenState {
 
     data class Content(
-        val items: List<Topic>
+        val items: Map<Topic, Boolean>
     ) : DzenTopicsPickerScreenState()
 
     object Error : DzenTopicsPickerScreenState()
