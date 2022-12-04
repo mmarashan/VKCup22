@@ -1,18 +1,15 @@
 package io.volgadev.sampleapp
 
 import android.app.Application
-import io.volgadev.sampleapp.core.messariapi.di.MessariApiModule
 import io.volgadev.sampleapp.di.AppModule
-import io.volgadev.sampleapp.feature.prices_list.di.AssetsListModule
+import io.volgadev.sampleapp.feature.dzentopicspicker.di.AssetsListModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
-import timber.log.Timber
 
 class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        Timber.plant(Timber.DebugTree())
 
         startKoin {
             androidContext(this@App)
@@ -21,7 +18,6 @@ class App : Application() {
                 AppModule,
 
                 /* core */
-                MessariApiModule,
 
                 /* feature */
                 AssetsListModule,

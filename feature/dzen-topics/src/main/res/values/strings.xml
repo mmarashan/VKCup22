@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="dzen_topics_description">Отметьте то, что вам интересно, чтобы настроить Дзен</string>
+    <string name="asset_price_title">Price</string>
+</resources>

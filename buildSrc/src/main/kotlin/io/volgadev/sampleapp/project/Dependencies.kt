@@ -70,10 +70,6 @@ object Dependencies {
         }
     }
 
-    object Logger {
-        const val core = "com.jakewharton.timber:timber:5.0.1"
-    }
-
     object Koin {
         private const val version = "3.2.0"
         const val core = "io.insert-koin:koin-core:$version"
@@ -84,7 +80,7 @@ object Dependencies {
 
     object Navigation {
         private const val version = "2.4.2"
-        val navigationCompose = "androidx.navigation:navigation-compose:$version"
+        const val navigationCompose = "androidx.navigation:navigation-compose:$version"
     }
 
 }

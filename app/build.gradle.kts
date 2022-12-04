@@ -20,7 +20,6 @@ android {
         targetSdk = AndroidProject.targetSdkVersion
         versionCode = 1
         versionName = "1.0"
-        buildConfigField("String", "MESSARY_API_KEY", "\"44926959-5c77-4b81-8ffa-43920d45d57f\"")
     }
 
     compileOptions {
@@ -72,10 +71,10 @@ dependencies {
 
     implementation(Dependencies.Navigation.navigationCompose)
 
-    implementation(Dependencies.Logger.core)
     implementation(Dependencies.Koin.compose)
 
-    implementation(project(Modules.Feature.cryptoAssetsList))
-    implementation(project(Modules.Core.messariApi))
     implementation(project(Modules.Core.featureApi))
+    implementation(project(Modules.Core.uiKit))
+
+    implementation(project(Modules.Feature.dzenTopics))
 }

@@ -1,4 +1,4 @@
-rootProject.name = "Ktor example"
+rootProject.name = "VKCup22"
 
 /* App */
 include(
@@ -10,10 +10,10 @@ include(
     ":core:network",
     ":core:common",
     ":core:feature-api",
-    ":core:messari-api",
+    ":core:ui-kit"
 )
 
 /* Feature */
 include(
-    ":feature:crypto-assets-list"
+    ":feature:dzen-topics"
 )
