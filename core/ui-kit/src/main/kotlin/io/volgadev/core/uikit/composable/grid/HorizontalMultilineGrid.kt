@@ -2,6 +2,7 @@ package io.volgadev.core.uikit.composable.grid
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.widthIn
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.Layout
@@ -9,8 +10,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
-import io.volgadev.core.uikit.composable.chips.TextChip
-import io.volgadev.core.uikit.theme.AppColors
 
 /**
  * Vertically located damage group of elements with
@@ -63,18 +62,15 @@ fun HorizontalMultilineGrid(
 @Preview(showBackground = true)
 @Composable
 private fun ChipGroupPreview() {
-    val items = listOf("Test", "Test Test", "Test Test Test", "Test Test", "Test", "Test Test Test")
+    val items = listOf("Test", "Test-Test", "Test-Test-Test", "Test-Test", "Test", "Test-Test-Test")
 
     HorizontalMultilineGrid(
         modifier = Modifier.padding(8.dp), spacing = 8.dp
     ) {
         items.forEach { item ->
-            TextChip(
+            Text(
                 modifier = Modifier.widthIn(80.dp),
-                text = item,
-                backgroundColor = AppColors.grayBackground,
-                verticalTextPadding = 8.dp,
-                horizontalTextPadding = 20.dp
+                text = item
             )
         }
     }

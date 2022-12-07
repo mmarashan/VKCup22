@@ -6,6 +6,10 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.FabPosition
+import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -14,7 +18,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import io.volgadev.core.uikit.composable.button.MainScreenButton
 import io.volgadev.core.uikit.composable.grid.HorizontalMultilineGrid
+import io.volgadev.core.uikit.theme.AppColors
 import io.volgadev.core.uikit.theme.AppTheme
 import io.volgadev.sampleapp.feature.dzentopicspicker.R
 import io.volgadev.sampleapp.feature.dzentopicspicker.domain.model.Topic
@@ -23,22 +29,52 @@ import io.volgadev.sampleapp.feature.dzentopicspicker.domain.model.Topic
 internal fun DzenTopicsPickerScreenContent(
     modifier: Modifier = Modifier,
     items: Map<Topic, Boolean>,
-    onClickItem: (Topic) -> Unit
+    isNextButtonVisible: Boolean,
+    isSkipButtonVisible: Boolean,
+    onClickItem: (Topic) -> Unit,
+    onClickNext: () -> Unit,
+    onClickSkip: () -> Unit
 ) {
-    Column(modifier) {
-        PriceListHeader()
-        Spacer(modifier = Modifier.height(24.dp))
-        HorizontalMultilineGrid(spacing = 8.dp) {
-            items.forEach { item ->
-                TopicChip(
-                    modifier = Modifier.clickable(
-                        enabled = true,
-                        interactionSource = remember { MutableInteractionSource() },
-                        indication = null,
-                        onClick = { onClickItem.invoke(item.key) }),
-                    text = item.key.name,
-                    selected = item.value
-                )
+    Scaffold(
+        modifier, floatingActionButton = {
+            Column {
+                if (isNextButtonVisible) {
+                    MainScreenButton(
+                        modifier = Modifier
+                            .padding(horizontal = 8.dp)
+                            .clickable { onClickNext.invoke() },
+                        text = stringResource(R.string.next_button_text),
+                        backgroundColor = AppColors.primaryOrange
+                    )
+                }
+                if (isSkipButtonVisible) {
+                    MainScreenButton(
+                        modifier = Modifier
+                            .padding(horizontal = 8.dp)
+                            .clickable { onClickSkip.invoke() },
+                        text = stringResource(R.string.skip_button_text),
+                        backgroundColor = AppColors.grayBackground
+                    )
+                }
+            }
+        }, floatingActionButtonPosition = FabPosition.Center
+    ) {
+        Column(
+            modifier = Modifier.verticalScroll(rememberScrollState())
+        ) {
+            PriceListHeader()
+            Spacer(modifier = Modifier.height(24.dp))
+            HorizontalMultilineGrid(spacing = 8.dp) {
+                items.forEach { item ->
+                    TopicChip(
+                        modifier = Modifier.clickable(enabled = true,
+                            interactionSource = remember { MutableInteractionSource() },
+                            indication = null,
+                            onClick = { onClickItem.invoke(item.key) }),
+                        text = item.key.name,
+                        selected = item.value
+                    )
+                }
             }
         }
     }
@@ -61,9 +97,15 @@ private fun PriceListHeader(
 @Composable
 internal fun PricesListUiPreview() {
     AppTheme {
-        DzenTopicsPickerScreenContent(modifier = Modifier.padding(16.dp), items = mapOf(
-            Topic(id = "", name = "Путушествия") to true,
-            Topic(id = "", name = "Бизнес") to false
-        ), onClickItem = {})
+        DzenTopicsPickerScreenContent(modifier = Modifier.padding(16.dp),
+            items = mapOf(
+                Topic(id = "", name = "Путушествия") to true,
+                Topic(id = "", name = "Бизнес") to false
+            ),
+            isNextButtonVisible = true,
+            isSkipButtonVisible = false,
+            onClickItem = {},
+            onClickNext = {},
+            onClickSkip = {})
     }
 }
