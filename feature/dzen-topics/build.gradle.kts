@@ -19,6 +19,7 @@ android {
 
     buildFeatures {
         compose = true
+        buildConfig = false
     }
     composeOptions {
         kotlinCompilerExtensionVersion = Dependencies.AndroidX.Compose.composeCompilerVersion
@@ -26,7 +27,6 @@ android {
 }
 
 dependencies {
-    implementation(Dependencies.Kotlin.Serialization.json)
     implementation(Dependencies.Koin.compose)
     implementation(Dependencies.Koin.core)
     implementation(Dependencies.Koin.android)

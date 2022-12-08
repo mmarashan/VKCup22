@@ -11,12 +11,12 @@ package io.volgadev.core.result
  */
 sealed class Result<out T, out E : Throwable> {
     /**
-     * Возвщащенная ошибка, опционально скрывающая причину в [exception]
+     * The returned error, optionally hiding the cause in [exception]
      */
     data class Error<out E : Throwable>(val exception: E) : Result<Nothing, E>()
 
     /**
-     * Возвращенный успешный ответ типа [T]
+     * Returned successful response of type [T]
      */
     data class Success<T>(val value: T) : Result<T, Nothing>()
 }

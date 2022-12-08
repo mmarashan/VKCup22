@@ -51,27 +51,10 @@ android {
 dependencies {
     implementation(Dependencies.Kotlin.Coroutines.core)
 
-    implementation(Dependencies.AndroidX.activity)
-    implementation(Dependencies.AndroidX.Compose.activity)
-    implementation(Dependencies.AndroidX.Compose.compiler)
-    implementation(Dependencies.AndroidX.Compose.runtime)
-    implementation(Dependencies.AndroidX.Compose.themeAdapter)
-    implementation(Dependencies.AndroidX.Compose.materialIcons)
-    implementation(Dependencies.AndroidX.Compose.material)
-    implementation(Dependencies.AndroidX.Compose.tooling)
-    implementation(Dependencies.AndroidX.Accompanist.insets)
-
-    implementation(Dependencies.Api.Ktor.core)
-    implementation(Dependencies.Api.Ktor.logging)
-    implementation(Dependencies.Kotlin.Serialization.ktor)
-    implementation(Dependencies.Kotlin.Serialization.json)
-
     implementation(Dependencies.Koin.core)
     implementation(Dependencies.Koin.android)
-
-    implementation(Dependencies.Navigation.navigationCompose)
-
     implementation(Dependencies.Koin.compose)
+    implementation(Dependencies.Navigation.navigationCompose)
 
     implementation(project(Modules.Core.featureApi))
     implementation(project(Modules.Core.uiKit))

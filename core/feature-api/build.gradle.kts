@@ -18,11 +18,14 @@ android {
         minSdk = AndroidProject.minSdkVersion
         targetSdk = AndroidProject.targetSdkVersion
     }
+
+    buildFeatures {
+        compose = true
+        buildConfig = false
+    }
 }
 
 dependencies {
-    implementation(kotlin("stdlib"))
-
     implementation(Dependencies.AndroidX.Compose.ui)
     implementation(Dependencies.AndroidX.Core.coreKtx)
     implementation(Dependencies.Navigation.navigationCompose)

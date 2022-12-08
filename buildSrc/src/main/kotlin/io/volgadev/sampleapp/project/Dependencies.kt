@@ -20,8 +20,6 @@ object Dependencies {
             const val material = "androidx.compose.material:material:$composeVersion"
             const val materialIcons =
                 "androidx.compose.material:material-icons-extended:$composeVersion"
-
-            const val coil = "io.coil-kt:coil-compose:2.0.0-rc01"
             const val themeAdapter = "com.google.android.material:compose-theme-adapter:1.1.4"
         }
 
@@ -30,38 +28,12 @@ object Dependencies {
             const val insets = "com.google.accompanist:accompanist-insets:$accompanistVersion"
         }
 
-        object Lifecycle {
-            private const val version = "2.4.1"
-
-            const val lifecycle = "androidx.lifecycle:lifecycle-runtime-ktx:$version"
-            const val processLifeCycle = "androidx.lifecycle:lifecycle-process:$version"
-            const val viewModelKotlinExt = "androidx.lifecycle:lifecycle-viewmodel-ktx:$version"
-            const val compiler = "androidx.lifecycle:lifecycle-compiler:$version"
-        }
-
         object Core {
             const val coreKtx = "androidx.core:core-ktx:1.6.0"
         }
     }
 
-    object Api {
-
-        object Ktor {
-            const val version = "1.5.0"
-            const val core = "io.ktor:ktor-client-android:$version"
-            const val logging = "io.ktor:ktor-client-logging:$version"
-        }
-    }
-
     object Kotlin {
-        const val std = "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
-
-        object Serialization {
-            private const val version = "1.3.2"
-            const val ktor = "io.ktor:ktor-client-serialization:${Api.Ktor.version}"
-            const val json = "org.jetbrains.kotlinx:kotlinx-serialization-json:$version"
-        }
-
         object Coroutines {
             private const val version = "1.6.0"
 
@@ -82,5 +54,4 @@ object Dependencies {
         private const val version = "2.4.2"
         const val navigationCompose = "androidx.navigation:navigation-compose:$version"
     }
-
 }
