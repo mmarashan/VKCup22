@@ -1,12 +1,6 @@
-### Sample Android apps based on modern (2022) technologies and principles
+### VK Cup 2022
 
-App based on:
+1 этап/Квалификация Mobile/Задача A
 
-- App has been fully modularized by core and feature modules
-- Clean Architecture inside modules (all classes strongly divided into domain or data or
-  presentation layer)
-- MVI presentation layer Architecture (Jetpack ViewModel extends SEAViewModel (SEA - State + Event +
-  Action))
-- Jetpack Compose for UI + Jetpack Compose Navigation
-- Koin as DI
-- Ktor + Kotlin Serialisation for network requests
+#### or watch this video:
+[![Демо:]()](demo.mp4)
