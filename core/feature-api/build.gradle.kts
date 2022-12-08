@@ -1,12 +1,10 @@
-
 import io.volgadev.sampleapp.project.AndroidProject
 import io.volgadev.sampleapp.project.Dependencies
 import io.volgadev.sampleapp.project.Modules
 
 plugins {
     id("com.android.library")
-    id("kotlinx-serialization")
-    kotlin(module = "android")
+    kotlin("android")
 }
 
 android {
@@ -20,7 +18,6 @@ android {
     }
 
     buildFeatures {
-        compose = true
         buildConfig = false
     }
 }
