@@ -3,6 +3,7 @@ package io.volgadev.sampleapp.feature.dzentopicspicker.data
 import io.volgadev.core.result.Result
 import io.volgadev.sampleapp.feature.dzentopicspicker.domain.DzenTopicsRepository
 import io.volgadev.sampleapp.feature.dzentopicspicker.domain.model.Topic
+import kotlinx.coroutines.delay
 
 internal class DzenTopicsRepositoryImpl() : DzenTopicsRepository {
 
@@ -10,6 +11,7 @@ internal class DzenTopicsRepositoryImpl() : DzenTopicsRepository {
         /**
          * Здесь мог быть запрос к бэку, но его нет :)
          */
+        delay(1000L)
         return Result.Success<List<Topic>>(
             listOf(
                 Topic("0", "Юмор"),

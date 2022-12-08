@@ -36,4 +36,5 @@ dependencies {
     api(Dependencies.AndroidX.Compose.material)
     api(Dependencies.AndroidX.Compose.tooling)
     api(Dependencies.AndroidX.Accompanist.insets)
+    api(Dependencies.AndroidX.Accompanist.accompanistPlaceholder)
 }

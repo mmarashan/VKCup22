@@ -30,8 +30,8 @@ import io.volgadev.sampleapp.feature.dzentopicspicker.R
  * Длительность анимации в милисекундах
  */
 private const val TAB_ANIMATION_DURATION = 150
-private const val TAB_HEIGHT_DP = 40
-private const val CORNER_SHAPE_PERCENT = 25
+internal const val TAB_HEIGHT_DP = 40
+internal const val CORNER_SHAPE_PERCENT = 25
 
 /**
  * Чипс темы

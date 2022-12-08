@@ -9,6 +9,7 @@ import androidx.navigation.NavHostController
 import io.volgadev.sampleapp.feature.dzentopicspicker.presentation.topicspicker.model.DzenTopicsPickerScreenEvent
 import io.volgadev.sampleapp.feature.dzentopicspicker.presentation.topicspicker.model.DzenTopicsPickerScreenState
 import io.volgadev.sampleapp.feature.dzentopicspicker.presentation.topicspicker.ui.DzenTopicsPickerScreenContent
+import io.volgadev.sampleapp.feature.dzentopicspicker.presentation.topicspicker.ui.DzenTopicsPickerScreenLoader
 import org.koin.androidx.compose.getViewModel
 
 
@@ -37,6 +38,9 @@ internal fun DzenTopicsPickerScreen(
         DzenTopicsPickerScreenState.Error -> {
         }
         DzenTopicsPickerScreenState.Loading -> {
+            DzenTopicsPickerScreenLoader(
+                modifier = modifier.padding(top = 32.dp, start = 16.dp, end = 16.dp),
+            )
         }
     }
 }

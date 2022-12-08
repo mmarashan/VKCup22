@@ -27,6 +27,9 @@ object AppColors {
     val blackText = Color(0xFF000000)
 
     val primaryOrange = Color(0xFFFF7800)
+
+    val shimmerStart = Color(0xFFE8E8F2)
+    val shimmerMiddle = Color(0x66E8E8F2)
 }
 
 @Composable

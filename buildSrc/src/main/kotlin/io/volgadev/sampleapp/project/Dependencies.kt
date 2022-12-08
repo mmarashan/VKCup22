@@ -26,6 +26,8 @@ object Dependencies {
         object Accompanist {
             private const val accompanistVersion = "0.24.9-beta"
             const val insets = "com.google.accompanist:accompanist-insets:$accompanistVersion"
+            const val accompanistPlaceholder =
+                "com.google.accompanist:accompanist-placeholder:${accompanistVersion}"
         }
 
         object Core {
