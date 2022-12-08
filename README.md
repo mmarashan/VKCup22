@@ -2,5 +2,5 @@
 
 1 этап/Квалификация Mobile/Задача A
 
-#### or watch this video:
-[![Демо:]()](demo.mp4)
+#### Show video demo:
+demo.mp4
