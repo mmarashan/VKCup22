@@ -1,7 +1,5 @@
 package io.volgadev.sampleapp.feature.questionnaire.presentation.topicspicker.model
 
-import io.volgadev.sampleapp.feature.questionnaire.domain.model.Topic
-
 internal sealed class QuestionnaireDemoScreenState {
 
     data class Content(

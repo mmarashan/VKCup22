@@ -16,7 +16,6 @@ import androidx.compose.ui.unit.dp
 import io.volgadev.core.uikit.composable.button.MainScreenButton
 import io.volgadev.core.uikit.theme.AppColors
 import io.volgadev.core.uikit.theme.AppTheme
-import io.volgadev.sampleapp.feature.questionnaire.domain.model.Topic
 
 @Composable
 internal fun DzenTopicsPickerScreenContent(

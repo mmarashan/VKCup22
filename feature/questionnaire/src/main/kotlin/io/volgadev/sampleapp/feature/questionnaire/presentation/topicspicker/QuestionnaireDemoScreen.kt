@@ -16,7 +16,7 @@ import org.koin.androidx.compose.getViewModel
 internal fun QuestionnaireDemoScreen(
     modifier: Modifier,
     navController: NavHostController,
-    viewModel: QuestionnaireViewModel = getViewModel()
+    viewModel: QuestionnaireDemoViewModel = getViewModel()
 ) {
     val state = viewModel.state.collectAsState(initial = QuestionnaireDemoScreenState.Loading)
 
