@@ -12,6 +12,10 @@ plugins {
 }
 
 android {
+//    signingConfigs {
+//        create("release") {
+//        }
+//    }
     compileSdk = AndroidProject.compileSdkVersion
     buildToolsVersion = AndroidProject.buildToolsVersion
 
@@ -21,6 +25,15 @@ android {
         versionCode = 1
         versionName = "1.0"
     }
+
+//    buildTypes {
+//        debug {
+//            /* Запрещает использовать default debug keystore и использует ключи подписи из flavor. */
+//            isDebuggable = false
+//            isShrinkResources = true
+//            isMinifyEnabled = true
+//        }
+//    }
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -60,4 +73,5 @@ dependencies {
     implementation(project(Modules.Core.uiKit))
 
     implementation(project(Modules.Feature.dzenTopics))
+    implementation(project(Modules.Feature.questionnaire))
 }

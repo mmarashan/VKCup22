@@ -14,5 +14,6 @@ include(
 
 /* Feature */
 include(
-    ":feature:dzen-topics"
+    ":feature:dzen-topics",
+    ":feature:questionnaire"
 )
