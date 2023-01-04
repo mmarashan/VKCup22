@@ -1,4 +1,4 @@
-package io.volgadev.sampleapp.feature.questionnaire.presentation.topicspicker
+package io.volgadev.sampleapp.feature.questionnaire.presentation.common
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
