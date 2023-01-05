@@ -4,17 +4,21 @@ package io.volgadev.sampleapp.feature.questionnaire.domain.model
  * Тип вопроса
  */
 internal sealed class QuestionType(
-    open val id: String,
-    open val questionText: String
+    open val id: String, open val questionText: String
 ) {
 
     /**
      * Вопрос с вариантами ответа
      * @property answers ответы
+     * @property суммарное количество ответов
      */
     data class Quiz(
-        override val id: String, override val questionText: String, val answers: List<String>
-    ) : QuestionType(id, questionText)
+        override val id: String,
+        override val questionText: String,
+        val answers: List<QuizAnswer>
+    ) : QuestionType(id, questionText) {
+        val allVotesCount = answers.sumOf { it.votesCount }
+    }
 
     /**
      * Сопоставление элементов левого столба с правым
