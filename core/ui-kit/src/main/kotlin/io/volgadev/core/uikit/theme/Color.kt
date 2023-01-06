@@ -27,6 +27,8 @@ object AppColors {
     val blackText = Color(0xFF000000)
 
     val primaryOrange = Color(0xFFFF7800)
+    val primaryGreen = Color(0xFF25ba25)
+    val primaryRed = Color(0xFFb01020)
 
     val shimmerStart = Color(0xFFE8E8F2)
     val shimmerMiddle = Color(0x66E8E8F2)
