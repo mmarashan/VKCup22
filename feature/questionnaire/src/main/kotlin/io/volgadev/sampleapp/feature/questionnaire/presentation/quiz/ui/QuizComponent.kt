@@ -43,7 +43,16 @@ internal fun QuizComponent(
                         (100f * answer.votesCount / quiz.allVotesCount).roundToInt()
                             .toString() + " %"
                     } else null
-                } else null, isSelected = isSelected
+                } else null,
+                state = if (isSelected) {
+                    if (answer.isCorrect) {
+                        QuizButtonState.CORRECT
+                    } else {
+                        QuizButtonState.INCORRECT
+                    }
+                } else {
+                    QuizButtonState.UNSELECTED
+                }
             )
         }
     }
@@ -76,7 +85,7 @@ internal fun QuizComponentPreviewSelected() {
             answers = listOf(
                 QuizAnswer("1", "2008", 1),
                 QuizAnswer("2", "2014", 2),
-                QuizAnswer("3", "2018", 3),
+                QuizAnswer("3", "2018", 3, isCorrect = true),
                 QuizAnswer("4", "Такого не было", 0),
             )
         ), selectedId = "3", onClickAnswer = {})

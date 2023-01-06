@@ -21,7 +21,7 @@ internal open class QuestionnaireDemoViewModel<out T : QuestionType>(
         onStart()
     }
 
-    fun onClickNext() {
+    open fun onClickNext() {
         if (currentItemIndex == questions.size - 1) {
             currentItemIndex = 0
         } else {

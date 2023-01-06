@@ -21,20 +21,24 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import io.volgadev.core.uikit.theme.AppColors
 
+internal enum class QuizButtonState {
+    UNSELECTED, CORRECT, INCORRECT
+}
 
 @Composable
-fun QuizButton(
+internal fun QuizButton(
     modifier: Modifier = Modifier,
     text: String,
     additionalText: String? = null,
     textColor: Color = AppColors.whiteText,
-    isSelected: Boolean = false,
+    state: QuizButtonState = QuizButtonState.UNSELECTED,
 ) {
-    val backgroundColor: Color = if (isSelected) {
-        AppColors.primaryOrange
-    } else {
-        AppColors.grayBackground
+    val backgroundColor: Color = when (state) {
+        QuizButtonState.UNSELECTED -> AppColors.grayBackground
+        QuizButtonState.CORRECT -> AppColors.primaryGreen
+        QuizButtonState.INCORRECT -> AppColors.primaryRed
     }
+
     Box(
         contentAlignment = Alignment.CenterStart,
         modifier = modifier
@@ -77,5 +81,25 @@ private fun QuizButtonPreview() {
     QuizButton(
         text = "Ответ 1",
         additionalText = "99%"
+    )
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun QuizButtonPreview2() {
+    QuizButton(
+        text = "Ответ 1",
+        additionalText = "99%",
+        state = QuizButtonState.CORRECT
+    )
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun QuizButtonPreview3() {
+    QuizButton(
+        text = "Ответ 1",
+        additionalText = "99%",
+        state = QuizButtonState.INCORRECT
     )
 }

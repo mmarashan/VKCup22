@@ -14,8 +14,18 @@ internal class QuestionnaireDemoRepositoryImpl : QuestionnaireDemoRepository {
                 answers = listOf(
                     QuizAnswer("1", "2008", 1),
                     QuizAnswer("2", "2014", 2),
-                    QuizAnswer("3", "2018", 3),
+                    QuizAnswer("3", "2018", 3, isCorrect = true),
                     QuizAnswer("4", "Такого не было", 0),
+                )
+            ),
+            QuestionType.Quiz(
+                id = "1",
+                questionText = "Кто стал чемпионом мира на ЧМ в России?",
+                answers = listOf(
+                    QuizAnswer("1", "Хорватия", 1),
+                    QuizAnswer("2", "Франция", 2, isCorrect = true),
+                    QuizAnswer("3", "Аргентина", 3),
+                    QuizAnswer("4", "Россия", 0),
                 )
             )
         )

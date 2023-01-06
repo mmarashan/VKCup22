@@ -15,4 +15,9 @@ internal class QuestionnaireQuizViewModel(
         val currentQuiz = currentItem.value ?: return
         currentAnswerId.tryEmit(answerId)
     }
+
+    override fun onClickNext() {
+        currentAnswerId.tryEmit(null)
+        super.onClickNext()
+    }
 }

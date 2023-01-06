@@ -1,6 +1,5 @@
 package io.volgadev.sampleapp.feature.questionnaire.presentation.quiz
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.FabPosition
@@ -68,11 +67,11 @@ internal fun QuestionnaireQuizScreen(
         floatingActionButton = {
             MainScreenButton(
                 modifier = Modifier
-                    .padding(horizontal = 8.dp)
-                    .clickable(onClick = onClickNext),
+                    .padding(horizontal = 8.dp),
                 text = stringResource(R.string.next_quiz),
                 backgroundColor = AppColors.darkBackground,
-                enabled = selectedId != null
+                enabled = selectedId != null,
+                onClick = onClickNext
             )
         },
         floatingActionButtonPosition = FabPosition.Center
