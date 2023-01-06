@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
-internal open class QuestionnaireDemoViewModel<out T : QuestionType>(
+internal open class QuestionnaireDemoViewModel<T : QuestionType>(
     private val questions: List<T>
 ) : ViewModel() {
 
@@ -36,5 +36,9 @@ internal open class QuestionnaireDemoViewModel<out T : QuestionType>(
             val item = questions.first()
             _currentItem.emit(item)
         }
+    }
+
+    protected fun updateCurrentItem(item: T) {
+        _currentItem.tryEmit(item)
     }
 }
