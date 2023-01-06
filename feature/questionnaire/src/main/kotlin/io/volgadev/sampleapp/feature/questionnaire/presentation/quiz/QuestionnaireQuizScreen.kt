@@ -1,23 +1,15 @@
 package io.volgadev.sampleapp.feature.questionnaire.presentation.quiz
 
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material.FabPosition
-import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import io.volgadev.core.uikit.composable.appbar.TopAppBar
-import io.volgadev.core.uikit.composable.button.MainScreenButton
-import io.volgadev.core.uikit.theme.AppColors
 import io.volgadev.core.uikit.theme.AppTheme
-import io.volgadev.sampleapp.feature.questionnaire.R
 import io.volgadev.sampleapp.feature.questionnaire.domain.model.QuestionType
 import io.volgadev.sampleapp.feature.questionnaire.domain.model.QuizAnswer
+import io.volgadev.sampleapp.feature.questionnaire.presentation.common.QuestionnaireDemoScreen
 import io.volgadev.sampleapp.feature.questionnaire.presentation.quiz.ui.QuizComponent
 import org.koin.androidx.compose.getViewModel
 
@@ -56,33 +48,20 @@ internal fun QuestionnaireQuizScreen(
     onClickNext: () -> Unit,
     onClickAnswer: (String) -> Unit
 ) {
-
-    Scaffold(
+    QuestionnaireDemoScreen(
         modifier = modifier,
-        topBar = {
-            TopAppBar(
-                onClickBack = onClickBack
+        onClickBack = onClickBack,
+        onClickNext = onClickNext,
+        isNextEnabled = selectedId != null,
+        content = {
+            QuizComponent(
+                modifier = Modifier.fillMaxSize(),
+                quiz = quiz,
+                selectedId = selectedId,
+                onClickAnswer = onClickAnswer
             )
-        },
-        floatingActionButton = {
-            MainScreenButton(
-                modifier = Modifier
-                    .padding(horizontal = 8.dp),
-                text = stringResource(R.string.next_quiz),
-                backgroundColor = AppColors.darkBackground,
-                enabled = selectedId != null,
-                onClick = onClickNext
-            )
-        },
-        floatingActionButtonPosition = FabPosition.Center
-    ) {
-        QuizComponent(
-            modifier = Modifier.fillMaxSize(),
-            quiz = quiz,
-            selectedId = selectedId,
-            onClickAnswer = onClickAnswer
-        )
-    }
+        }
+    )
 }
 
 @Preview(showBackground = true)
