@@ -1,5 +1,6 @@
 package io.volgadev.sampleapp.feature.questionnaire.presentation.root
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -12,15 +13,23 @@ import io.volgadev.core.uikit.composable.button.MainScreenButton
 @Composable
 internal fun QuestionnaireDemoRouteScreen(
     modifier: Modifier,
-    onClickToQuiz: () -> Unit
+    onClickToQuiz: () -> Unit,
+    onClickToRating: () -> Unit
 ) {
     Column(
-        modifier = modifier
+        modifier = modifier,
+        verticalArrangement = Arrangement.Center
     ) {
         MainScreenButton(
             modifier = Modifier
                 .padding(16.dp),
             text = "Выбор ответа 1 из 4",
+            onClick = onClickToQuiz
+        )
+        MainScreenButton(
+            modifier = Modifier
+                .padding(16.dp),
+            text = "Поставить оценку",
             onClick = onClickToQuiz
         )
     }
@@ -31,6 +40,7 @@ internal fun QuestionnaireDemoRouteScreen(
 private fun QuestionnaireDemoRouteScreenPreview() {
     QuestionnaireDemoRouteScreen(
         modifier = Modifier.fillMaxSize(),
-        onClickToQuiz = {}
+        onClickToQuiz = {},
+        onClickToRating = {}
     )
 }
