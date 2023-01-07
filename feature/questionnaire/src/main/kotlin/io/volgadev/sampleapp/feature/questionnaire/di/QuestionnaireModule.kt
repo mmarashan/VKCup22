@@ -5,6 +5,7 @@ import io.volgadev.sampleapp.feature.questionnaire.domain.QuestionnaireDemoRepos
 import io.volgadev.sampleapp.feature.questionnaire.navigation.QuestionnaireApi
 import io.volgadev.sampleapp.feature.questionnaire.navigation.QuestionnaireImpl
 import io.volgadev.sampleapp.feature.questionnaire.presentation.quiz.QuestionnaireQuizViewModel
+import io.volgadev.sampleapp.feature.questionnaire.presentation.rating.QuestionnaireRatingViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
@@ -15,5 +16,7 @@ val QuestionnaireModule = module(createdAtStart = false) {
     factory<QuestionnaireApi> { QuestionnaireImpl() }
 
     viewModel { QuestionnaireQuizViewModel(repository = get()) }
+
+    viewModel { QuestionnaireRatingViewModel(repository = get()) }
 }
 

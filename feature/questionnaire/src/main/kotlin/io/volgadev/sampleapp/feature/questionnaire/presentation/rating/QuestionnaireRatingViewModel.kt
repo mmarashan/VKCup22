@@ -7,12 +7,12 @@ import kotlinx.coroutines.flow.MutableStateFlow
 
 internal class QuestionnaireRatingViewModel(
     repository: QuestionnaireDemoRepository
-) : QuestionnaireDemoViewModel<QuestionType.Quiz>(repository.getQuizItems()) {
+) : QuestionnaireDemoViewModel<QuestionType.Rating>(repository.getRatingItems()) {
 
     val selectedRating = MutableStateFlow<Int?>(null)
 
     fun onSetsRating(value: Int) {
-
+        selectedRating.tryEmit(value)
     }
 
     override fun onClickNext() {

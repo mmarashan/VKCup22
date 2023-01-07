@@ -30,7 +30,7 @@ internal fun QuestionnaireDemoRouteScreen(
             modifier = Modifier
                 .padding(16.dp),
             text = "Поставить оценку",
-            onClick = onClickToQuiz
+            onClick = onClickToRating
         )
     }
 }

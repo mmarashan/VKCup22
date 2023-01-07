@@ -52,7 +52,13 @@ internal class QuestionnaireDemoRepositoryImpl : QuestionnaireDemoRepository {
     override fun getRatingItems(): List<QuestionType.Rating> {
         return listOf(
             QuestionType.Rating(
-                id = "1", questionText = "", maxValue = 5
+                id = "1", questionText = "Как вам этот пост про чемпионат мира?", maxValue = 5
+            ),
+            QuestionType.Rating(
+                id = "2", questionText = "Насколько хотите еще?", maxValue = 5
+            ),
+            QuestionType.Rating(
+                id = "3", questionText = "Двигаемся дальше?", maxValue = 5
             )
         )
     }
