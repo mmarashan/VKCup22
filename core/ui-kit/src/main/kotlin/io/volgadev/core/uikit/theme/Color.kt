@@ -36,7 +36,7 @@ object AppColors {
 
 @Composable
 @Preview(showBackground = true)
-fun AppColorsPreview() {
+private fun AppColorsPreview() {
     Column {
         ColorItem(text = "darkBackground", color = AppColors.darkBackground)
         ColorItem(text = "lightBackground", color = AppColors.lightBackground)
