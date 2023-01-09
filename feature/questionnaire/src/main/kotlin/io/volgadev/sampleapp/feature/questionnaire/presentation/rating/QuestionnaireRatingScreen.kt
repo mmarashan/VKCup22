@@ -50,7 +50,8 @@ internal fun QuestionnaireRatingScreenContent(
     onClickNext: () -> Unit,
     onSetsRating: (Int) -> Unit
 ) {
-    QuestionnaireDemoScreen(modifier = modifier,
+    QuestionnaireDemoScreen(
+        modifier = modifier,
         onClickBack = onClickBack,
         onClickNext = onClickNext,
         isNextEnabled = selectedRating != null,
@@ -78,7 +79,8 @@ internal fun QuestionnaireRatingScreenContent(
                     ) {}
                 }
             }
-        })
+        }
+    )
 }
 
 @Preview(showBackground = true)

@@ -13,9 +13,7 @@ internal sealed class QuestionType(
      * @property суммарное количество ответов
      */
     data class Quiz(
-        override val id: String,
-        override val questionText: String,
-        val answers: List<QuizAnswer>
+        override val id: String, override val questionText: String, val answers: List<QuizAnswer>
     ) : QuestionType(id, questionText) {
         val allVotesCount = answers.sumOf { it.votesCount }
     }
@@ -35,14 +33,26 @@ internal sealed class QuestionType(
     /**
      * Подстановка пропусков
      * @property textWithPlaceholders текст с плейсхолдерами [placeholder]
-     * @property placeholderItems варианты для подстановки
+     * @property answers варианты для подстановки
      */
     data class GapSubstitution(
         override val id: String,
         override val questionText: String,
         val textWithPlaceholders: String,
         val placeholder: String = "[]",
-        val placeholderItems: List<String>
+        val answers: List<String>
+    ) : QuestionType(id, questionText)
+
+    /**
+     * Заполнение пропуска в тексте
+     * @property textWithPlaceholders текст с плейсхолдерами [placeholder]
+     */
+    data class GapFilling(
+        override val id: String,
+        override val questionText: String,
+        val textWithPlaceholders: String,
+        val placeholder: String = "[]",
+        val answers: List<String>
     ) : QuestionType(id, questionText)
 
     /**

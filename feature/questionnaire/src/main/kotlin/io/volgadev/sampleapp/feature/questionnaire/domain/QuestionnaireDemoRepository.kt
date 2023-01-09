@@ -6,9 +6,9 @@ internal interface QuestionnaireDemoRepository {
 
     fun getQuizItems(): List<QuestionType.Quiz>
 
-    fun getGapSubstitutionItems(): List<QuestionType.GapSubstitution>
-
     fun getMatchingItems(): List<QuestionType.Matching>
 
     fun getRatingItems(): List<QuestionType.Rating>
+
+    fun getGapFillingItems(): List<QuestionType.GapFilling>
 }

@@ -31,16 +31,6 @@ internal class QuestionnaireDemoRepositoryImpl : QuestionnaireDemoRepository {
         )
     }
 
-    override fun getGapSubstitutionItems(): List<QuestionType.GapSubstitution> {
-        return listOf(
-            QuestionType.GapSubstitution(
-                id = "1", questionText = "", textWithPlaceholders = "", placeholderItems = listOf(
-                    "", "", ""
-                )
-            )
-        )
-    }
-
     override fun getMatchingItems(): List<QuestionType.Matching> {
         return listOf(
             QuestionType.Matching(
@@ -60,6 +50,25 @@ internal class QuestionnaireDemoRepositoryImpl : QuestionnaireDemoRepository {
             QuestionType.Rating(
                 id = "3", questionText = "Двигаемся дальше?", maxValue = 5
             )
+        )
+    }
+
+    override fun getGapFillingItems(): List<QuestionType.GapFilling> {
+        return listOf(
+            QuestionType.GapFilling(
+                id = "1",
+                questionText = "Заполните пропуски в тексте",
+                textWithPlaceholders = "У лукоморья [] зеленый, златая [] на дубе том. " +
+                        "И днем и ночью [] ученый все ходит по [] кругом.",
+                answers = listOf("дуб", "цепь", "кот", "цепи")
+            ),
+            QuestionType.GapFilling(
+                id = "2",
+                questionText = "Заполните пропуски в тексте",
+                textWithPlaceholders = "Пойдет направо - [] заводит, налево - [] говорит." +
+                        "Там чудеса, там [] бродит, [] на ветвях сидит.",
+                answers = listOf("песнь", "сказку", "леший", "русалка")
+            ),
         )
     }
 }

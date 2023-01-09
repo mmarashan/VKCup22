@@ -5,6 +5,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import io.volgadev.core.feature_api.FeatureApi
+import io.volgadev.sampleapp.feature.questionnaire.presentation.gapsfilling.GapFillingScreen
 import io.volgadev.sampleapp.feature.questionnaire.presentation.quiz.QuestionnaireQuizScreen
 import io.volgadev.sampleapp.feature.questionnaire.presentation.rating.QuestionnaireRatingScreen
 import io.volgadev.sampleapp.feature.questionnaire.presentation.root.QuestionnaireDemoRouteScreen
@@ -17,6 +18,7 @@ internal class QuestionnaireImpl : QuestionnaireApi {
 
     private val quizScreenRoute: String = "questionnaire/quiz"
     private val ratingScreenRoute: String = "questionnaire/rating"
+    private val gapFillingScreenRoute: String = "questionnaire/gapFilling"
 
     override val rootRoute: String = "questionnaire/root"
 
@@ -24,11 +26,18 @@ internal class QuestionnaireImpl : QuestionnaireApi {
         navGraphBuilder: NavGraphBuilder, navController: NavHostController, modifier: Modifier
     ) {
         navGraphBuilder.composable(rootRoute) {
-            QuestionnaireDemoRouteScreen(modifier = modifier, onClickToQuiz = {
-                navController.navigate(quizScreenRoute)
-            }, onClickToRating = {
-                navController.navigate(ratingScreenRoute)
-            })
+            QuestionnaireDemoRouteScreen(
+                modifier = modifier,
+                onClickToQuiz = {
+                    navController.navigate(quizScreenRoute)
+                },
+                onClickToRating = {
+                    navController.navigate(ratingScreenRoute)
+                },
+                onClickToGapFilling = {
+                    navController.navigate(gapFillingScreenRoute)
+                }
+            )
         }
 
         navGraphBuilder.composable(quizScreenRoute) {
@@ -36,6 +45,9 @@ internal class QuestionnaireImpl : QuestionnaireApi {
         }
         navGraphBuilder.composable(ratingScreenRoute) {
             QuestionnaireRatingScreen(navController = navController, modifier = modifier)
+        }
+        navGraphBuilder.composable(gapFillingScreenRoute) {
+            GapFillingScreen(navController = navController, modifier = modifier)
         }
     }
 }

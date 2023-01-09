@@ -14,7 +14,8 @@ import io.volgadev.core.uikit.composable.button.MainScreenButton
 internal fun QuestionnaireDemoRouteScreen(
     modifier: Modifier,
     onClickToQuiz: () -> Unit,
-    onClickToRating: () -> Unit
+    onClickToRating: () -> Unit,
+    onClickToGapFilling: () -> Unit
 ) {
     Column(
         modifier = modifier,
@@ -32,6 +33,12 @@ internal fun QuestionnaireDemoRouteScreen(
             text = "Поставить оценку",
             onClick = onClickToRating
         )
+        MainScreenButton(
+            modifier = Modifier
+                .padding(16.dp),
+            text = "Заполнение пропуска в тексте",
+            onClick = onClickToGapFilling
+        )
     }
 }
 
@@ -41,6 +48,7 @@ private fun QuestionnaireDemoRouteScreenPreview() {
     QuestionnaireDemoRouteScreen(
         modifier = Modifier.fillMaxSize(),
         onClickToQuiz = {},
-        onClickToRating = {}
+        onClickToRating = {},
+        onClickToGapFilling = {}
     )
 }
