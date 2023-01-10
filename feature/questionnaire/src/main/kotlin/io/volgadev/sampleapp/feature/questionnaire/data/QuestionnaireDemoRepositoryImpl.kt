@@ -58,7 +58,7 @@ internal class QuestionnaireDemoRepositoryImpl : QuestionnaireDemoRepository {
             QuestionType.GapFilling(
                 id = "1",
                 questionText = "Заполните пропуски в тексте",
-                textWithPlaceholders = "У лукоморья [] зеленый, златая [] на дубе том. " +
+                textWithPlaceholders = "У лукоморья [] зеленый, злотая [] на дубе том. " +
                         "И днем и ночью [] ученый все ходит по [] кругом.",
                 answers = listOf("дуб", "цепь", "кот", "цепи")
             ),

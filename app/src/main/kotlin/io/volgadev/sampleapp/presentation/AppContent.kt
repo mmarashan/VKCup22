@@ -1,5 +1,6 @@
 package io.volgadev.sampleapp.presentation
 
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
@@ -12,7 +13,8 @@ fun AppContent(navController: NavHostController) {
     ProvideWindowInsets {
         AppTheme {
             AppNavGraph(
-                navController = navController, modifier = Modifier
+                navController = navController,
+                modifier = Modifier.fillMaxSize()
             )
         }
     }

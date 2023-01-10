@@ -4,4 +4,5 @@
     <string name="next_button_text">Продолжить</string>
     <string name="skip_button_text">Пропустить</string>
     <string name="next_quiz">Следующий</string>
+    <string name="to_check">Проверить</string>
 </resources>

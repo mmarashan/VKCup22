@@ -45,7 +45,12 @@ internal class GapFillingViewModel(
                 answersCounter++
             }
         }
-        currentViewState.tryEmit(state.copy(gapsCheckResult = GapsCheckResult(gapsCheckingResults)))
+        currentViewState.tryEmit(
+            state.copy(
+                gapsCheckResult = GapsCheckResult(gapsCheckingResults),
+                isNextEnabled = true
+            )
+        )
     }
 
     private fun restartViewState() {
