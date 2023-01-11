@@ -15,7 +15,8 @@ internal fun QuestionnaireDemoRouteScreen(
     modifier: Modifier,
     onClickToQuiz: () -> Unit,
     onClickToRating: () -> Unit,
-    onClickToGapFilling: () -> Unit
+    onClickToGapFilling: () -> Unit,
+    onClickToGapDragging: () -> Unit
 ) {
     Column(
         modifier = modifier,
@@ -39,6 +40,13 @@ internal fun QuestionnaireDemoRouteScreen(
             text = "Заполнение пропуска в тексте",
             onClick = onClickToGapFilling
         )
+
+        MainScreenButton(
+            modifier = Modifier
+                .padding(16.dp),
+            text = "Перетаскивание вариантов в пропуски",
+            onClick = onClickToGapDragging
+        )
     }
 }
 
@@ -49,6 +57,7 @@ private fun QuestionnaireDemoRouteScreenPreview() {
         modifier = Modifier.fillMaxSize(),
         onClickToQuiz = {},
         onClickToRating = {},
-        onClickToGapFilling = {}
+        onClickToGapFilling = {},
+        onClickToGapDragging = {}
     )
 }

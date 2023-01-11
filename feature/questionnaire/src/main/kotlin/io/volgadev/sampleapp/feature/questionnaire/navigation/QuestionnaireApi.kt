@@ -5,6 +5,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import io.volgadev.core.feature_api.FeatureApi
+import io.volgadev.sampleapp.feature.questionnaire.presentation.gapsdragging.GapDraggingScreen
 import io.volgadev.sampleapp.feature.questionnaire.presentation.gapsfilling.GapFillingScreen
 import io.volgadev.sampleapp.feature.questionnaire.presentation.quiz.QuestionnaireQuizScreen
 import io.volgadev.sampleapp.feature.questionnaire.presentation.rating.QuestionnaireRatingScreen
@@ -19,6 +20,7 @@ internal class QuestionnaireImpl : QuestionnaireApi {
     private val quizScreenRoute: String = "questionnaire/quiz"
     private val ratingScreenRoute: String = "questionnaire/rating"
     private val gapFillingScreenRoute: String = "questionnaire/gapFilling"
+    private val gapDraggingScreenRoute: String = "questionnaire/gapDragging"
 
     override val rootRoute: String = "questionnaire/root"
 
@@ -26,18 +28,15 @@ internal class QuestionnaireImpl : QuestionnaireApi {
         navGraphBuilder: NavGraphBuilder, navController: NavHostController, modifier: Modifier
     ) {
         navGraphBuilder.composable(rootRoute) {
-            QuestionnaireDemoRouteScreen(
-                modifier = modifier,
-                onClickToQuiz = {
-                    navController.navigate(quizScreenRoute)
-                },
-                onClickToRating = {
-                    navController.navigate(ratingScreenRoute)
-                },
-                onClickToGapFilling = {
-                    navController.navigate(gapFillingScreenRoute)
-                }
-            )
+            QuestionnaireDemoRouteScreen(modifier = modifier, onClickToQuiz = {
+                navController.navigate(quizScreenRoute)
+            }, onClickToRating = {
+                navController.navigate(ratingScreenRoute)
+            }, onClickToGapFilling = {
+                navController.navigate(gapFillingScreenRoute)
+            }, onClickToGapDragging = {
+                navController.navigate(gapDraggingScreenRoute)
+            })
         }
 
         navGraphBuilder.composable(quizScreenRoute) {
@@ -48,6 +47,9 @@ internal class QuestionnaireImpl : QuestionnaireApi {
         }
         navGraphBuilder.composable(gapFillingScreenRoute) {
             GapFillingScreen(navController = navController, modifier = modifier)
+        }
+        navGraphBuilder.composable(gapDraggingScreenRoute) {
+            GapDraggingScreen(navController = navController, modifier = modifier)
         }
     }
 }
