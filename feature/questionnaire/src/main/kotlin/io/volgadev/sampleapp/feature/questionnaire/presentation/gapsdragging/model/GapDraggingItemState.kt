@@ -6,18 +6,19 @@ internal data class GapDraggingItemState(
     val items: List<GapDraggingTextItem>,
     val isNextEnabled: Boolean = false,
     val isCheckEnabled: Boolean = false,
-    val gapsCheckResult: GapsCheckResult? = null
+    val tips: List<String>,
+    val gapsCheckResult: GapsDraggingCheckResult? = null
 )
 
 internal sealed class GapDraggingTextItem {
     internal class Word(val value: String) : GapDraggingTextItem()
-    internal class Gap(val value: String = "") : GapDraggingTextItem()
+    internal class Gap(val value: String? = null) : GapDraggingTextItem()
 }
 
 /**
  * Результат проверки вставленных пропусков
  * Ключ - индекс пропуска в списке [GapDraggingItemState.items]
  */
-internal data class GapsCheckResult(
+internal data class GapsDraggingCheckResult(
     val gapsCheckingResults: Map<Int, Boolean> = mapOf(),
 )

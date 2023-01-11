@@ -5,7 +5,7 @@ import io.volgadev.sampleapp.feature.questionnaire.domain.model.QuestionType
 import io.volgadev.sampleapp.feature.questionnaire.presentation.common.QuestionnaireDemoViewModel
 import io.volgadev.sampleapp.feature.questionnaire.presentation.gapsdragging.model.GapDraggingItemState
 import io.volgadev.sampleapp.feature.questionnaire.presentation.gapsdragging.model.GapDraggingTextItem
-import io.volgadev.sampleapp.feature.questionnaire.presentation.gapsdragging.model.GapsCheckResult
+import io.volgadev.sampleapp.feature.questionnaire.presentation.gapsdragging.model.GapsDraggingCheckResult
 import kotlinx.coroutines.flow.MutableStateFlow
 
 internal class GapDraggingViewModel(
@@ -30,7 +30,7 @@ internal class GapDraggingViewModel(
             items[index] = GapDraggingTextItem.Gap(newValue)
         }
         val isCheckEnabled = items.filterIsInstance<GapDraggingTextItem.Gap>()
-            .all { (it as GapDraggingTextItem.Gap).value.isNotEmpty() }
+            .all { it.value.orEmpty().isNotEmpty() }
         currentViewState.tryEmit(state.copy(items = items, isCheckEnabled = isCheckEnabled))
     }
 
@@ -49,7 +49,7 @@ internal class GapDraggingViewModel(
         }
         currentViewState.tryEmit(
             state.copy(
-                gapsCheckResult = GapsCheckResult(gapsCheckingResults), isNextEnabled = true
+                gapsCheckResult = GapsDraggingCheckResult(gapsCheckingResults), isNextEnabled = true
             )
         )
     }
@@ -64,6 +64,7 @@ internal class GapDraggingViewModel(
         return GapDraggingItemState(
             id = question.id,
             questionText = question.questionText,
+            tips = question.answers,
             items = question.textWithPlaceholders.split(" ").map { item ->
                 if (item == question.placeholder) {
                     GapDraggingTextItem.Gap()
@@ -74,6 +75,6 @@ internal class GapDraggingViewModel(
     }
 
     private fun emptyState() = GapDraggingItemState(
-        id = "", questionText = "", items = listOf()
+        id = "", questionText = "", items = listOf(), tips = listOf()
     )
 }

@@ -20,7 +20,7 @@ import io.volgadev.sampleapp.feature.questionnaire.R
 import io.volgadev.sampleapp.feature.questionnaire.presentation.common.QuestionnaireDemoScreen
 import io.volgadev.sampleapp.feature.questionnaire.presentation.gapsdragging.model.GapDraggingItemState
 import io.volgadev.sampleapp.feature.questionnaire.presentation.gapsdragging.model.GapDraggingTextItem
-import io.volgadev.sampleapp.feature.questionnaire.presentation.gapsdragging.model.GapsCheckResult
+import io.volgadev.sampleapp.feature.questionnaire.presentation.gapsdragging.model.GapsDraggingCheckResult
 import io.volgadev.sampleapp.feature.questionnaire.presentation.gapsdragging.ui.GapDraggingComponent
 import org.koin.androidx.compose.getViewModel
 
@@ -99,13 +99,16 @@ internal fun GapDraggingScreenPreview() {
                 GapDraggingTextItem.Gap("дуб"),
                 GapDraggingTextItem.Word("зеленый."),
                 GapDraggingTextItem.Word("Злотая"),
-                GapDraggingTextItem.Gap("язь"),
+                GapDraggingTextItem.Gap(null),
                 GapDraggingTextItem.Word("на"),
                 GapDraggingTextItem.Gap("дубе"),
                 GapDraggingTextItem.Word("том."),
             ),
-            gapsCheckResult = GapsCheckResult(
-                gapsCheckingResults = mapOf(2 to true, 5 to false, 7 to true)
+            gapsCheckResult = GapsDraggingCheckResult(
+                gapsCheckingResults = mapOf(2 to true, 7 to true)
+            ),
+            tips = listOf(
+                "цепь"
             )
         ),
         onClickBack = {},

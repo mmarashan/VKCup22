@@ -29,8 +29,8 @@ internal class GapFillingViewModel(
         if (items[index] is GapFillingTextItem.Gap) {
             items[index] = GapFillingTextItem.Gap(newValue)
         }
-        val isCheckEnabled = items.filter { it is GapFillingTextItem.Gap }
-            .all { (it as GapFillingTextItem.Gap).value.isNotEmpty() }
+        val isCheckEnabled = items.filterIsInstance<GapFillingTextItem.Gap>()
+            .all { it.value.isNotEmpty() }
         currentViewState.tryEmit(state.copy(items = items, isCheckEnabled = isCheckEnabled))
     }
 
