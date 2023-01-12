@@ -17,85 +17,111 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import io.volgadev.core.uikit.composable.grid.HorizontalMultilineGrid
+import io.volgadev.core.uikit.dragdrop.LongPressDraggable
 import io.volgadev.core.uikit.theme.AppColors
 import io.volgadev.sampleapp.feature.questionnaire.presentation.gapsdragging.model.GapDraggingItemState
 import io.volgadev.sampleapp.feature.questionnaire.presentation.gapsdragging.model.GapDraggingTextItem
 import io.volgadev.sampleapp.feature.questionnaire.presentation.gapsdragging.model.GapsDraggingCheckResult
 
-@OptIn(ExperimentalMaterialApi::class)
 @Composable
 internal fun GapDraggingComponent(
     modifier: Modifier, state: GapDraggingItemState, onChangeGapValue: (Int, String) -> Unit
 ) {
-    val gapsCheckResults = (state.gapsCheckResult ?: GapsDraggingCheckResult()).gapsCheckingResults
+    val checkResults = (state.gapsCheckResult ?: GapsDraggingCheckResult()).gapsCheckingResults
 
-    Column(modifier = modifier) {
-        HorizontalMultilineGrid(
-            spacing = 8.dp
-        ) {
-            state.items.forEachIndexed { i, item ->
-                when (item) {
-                    is GapDraggingTextItem.Gap -> {
-                        val boxColor = when (gapsCheckResults[i]) {
-                            true -> AppColors.primaryGreen
-                            false -> AppColors.primaryRed
-                            null -> AppColors.grayBackground
-                        }
+    LongPressDraggable(modifier = Modifier) {
 
-                        Box(
-                            modifier = Modifier
-                                .widthIn(64.dp)
-                                .height(28.dp)
-                                .background(
-                                    color = boxColor, shape = RoundedCornerShape(4.dp)
-                                ), contentAlignment = Alignment.Center
-                        ) {
-                            if (item.value != null) {
-                                Text(
-                                    modifier = Modifier,
-                                    text = item.value,
-                                    fontSize = 18.sp,
-                                    lineHeight = 20.sp,
-                                )
-                            }
+        Column(modifier = modifier) {
+            HorizontalMultilineGrid(
+                spacing = 8.dp
+            ) {
+                state.items.forEachIndexed { i, item ->
+                    when (item) {
+                        is GapDraggingTextItem.Gap -> {
+                            GapItem(
+                                modifier = Modifier
+                                    .widthIn(64.dp)
+                                    .height(28.dp),
+                                item = item,
+                                checkingResult = checkResults[i]
+                            )
                         }
-                    }
-                    is GapDraggingTextItem.Word -> {
-                        Text(
-                            modifier = Modifier,
-                            text = item.value,
-                            fontSize = 18.sp,
-                            lineHeight = 20.sp,
-                        )
+                        is GapDraggingTextItem.Word -> {
+                            Text(
+                                modifier = Modifier,
+                                text = item.value,
+                                fontSize = 18.sp,
+                                lineHeight = 20.sp,
+                            )
+                        }
                     }
                 }
             }
-        }
 
-        Spacer(modifier = Modifier.height(32.dp))
+            Spacer(modifier = Modifier.height(32.dp))
 
-        HorizontalMultilineGrid(
-            spacing = 8.dp
-        ) {
-            state.tips.forEach { tip ->
-                Box(
-                    modifier = Modifier
-                        .widthIn(64.dp)
-                        .height(28.dp)
-                        .background(
-                            color = AppColors.primaryOrange,
-                            shape = RoundedCornerShape(4.dp)
-                        ), contentAlignment = Alignment.Center
-                ) {
-                    Text(
-                        modifier = Modifier,
-                        text = tip,
-                        fontSize = 18.sp,
-                        lineHeight = 20.sp,
+            HorizontalMultilineGrid(
+                spacing = 8.dp
+            ) {
+                state.tips.forEach { tip ->
+                    TipItem(
+                        Modifier
+                            .widthIn(64.dp)
+                            .height(28.dp),
+                        text = tip
                     )
                 }
             }
         }
+    }
+}
+
+@Composable
+private fun GapItem(
+    modifier: Modifier,
+    item: GapDraggingTextItem.Gap,
+    checkingResult: Boolean?
+) {
+    val boxColor = when (checkingResult) {
+        true -> AppColors.primaryGreen
+        false -> AppColors.primaryRed
+        null -> AppColors.grayBackground
+    }
+
+    Box(
+        modifier = modifier.background(
+            color = boxColor, shape = RoundedCornerShape(4.dp)
+        ), contentAlignment = Alignment.Center
+    ) {
+        if (item.value != null) {
+            Text(
+                modifier = Modifier,
+                text = item.value,
+                fontSize = 18.sp,
+                lineHeight = 20.sp,
+            )
+        }
+    }
+}
+
+@Composable
+private fun TipItem(
+    modifier: Modifier,
+    text: String
+) {
+    Box(
+        modifier = modifier
+            .background(
+                color = AppColors.primaryOrange,
+                shape = RoundedCornerShape(4.dp)
+            ), contentAlignment = Alignment.Center
+    ) {
+        Text(
+            modifier = Modifier,
+            text = text,
+            fontSize = 18.sp,
+            lineHeight = 20.sp,
+        )
     }
 }
 
@@ -113,8 +139,7 @@ internal fun GapDraggingComponentPreview() {
             GapDraggingTextItem.Word("на"),
             GapDraggingTextItem.Gap(null),
             GapDraggingTextItem.Word("том."),
-        ), gapsCheckResult = null,
-        tips = listOf(
+        ), gapsCheckResult = null, tips = listOf(
             "дуб", "цепь", "дубе"
         )
     ), onChangeGapValue = { _, _ -> })
