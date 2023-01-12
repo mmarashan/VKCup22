@@ -12,7 +12,7 @@ internal class GapDraggingViewModel(
     repository: QuestionnaireDemoRepository,
 ) : QuestionnaireDemoViewModel<QuestionType.GapFilling>(repository.getGapFillingItems()) {
 
-    val currentViewState = MutableStateFlow<GapDraggingItemState>(emptyState())
+    val currentViewState = MutableStateFlow(emptyState())
 
     init {
         restartViewState()
@@ -49,7 +49,8 @@ internal class GapDraggingViewModel(
         }
         currentViewState.tryEmit(
             state.copy(
-                gapsCheckResult = GapsDraggingCheckResult(gapsCheckingResults), isNextEnabled = true
+                gapsCheckResult = GapsDraggingCheckResult(gapsCheckingResults),
+                isNextEnabled = true
             )
         )
     }
@@ -71,10 +72,14 @@ internal class GapDraggingViewModel(
                 } else {
                     GapDraggingTextItem.Word(value = item)
                 }
-            })
+            }
+        )
     }
 
     private fun emptyState() = GapDraggingItemState(
-        id = "", questionText = "", items = listOf(), tips = listOf()
+        id = "",
+        questionText = "",
+        items = listOf(),
+        tips = listOf()
     )
 }

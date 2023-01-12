@@ -83,7 +83,8 @@ private fun GapDraggingScreenContent(
                     onClick = onClickCheck
                 )
             }
-        })
+        }
+    )
 }
 
 @Preview(showBackground = true)

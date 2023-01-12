@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -17,6 +16,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import io.volgadev.core.uikit.composable.grid.HorizontalMultilineGrid
+import io.volgadev.core.uikit.dragdrop.DragTarget
+import io.volgadev.core.uikit.dragdrop.DropTarget
 import io.volgadev.core.uikit.dragdrop.LongPressDraggable
 import io.volgadev.core.uikit.theme.AppColors
 import io.volgadev.sampleapp.feature.questionnaire.presentation.gapsdragging.model.GapDraggingItemState
@@ -25,12 +26,13 @@ import io.volgadev.sampleapp.feature.questionnaire.presentation.gapsdragging.mod
 
 @Composable
 internal fun GapDraggingComponent(
-    modifier: Modifier, state: GapDraggingItemState, onChangeGapValue: (Int, String) -> Unit
+    modifier: Modifier,
+    state: GapDraggingItemState,
+    onChangeGapValue: (Int, String) -> Unit
 ) {
     val checkResults = (state.gapsCheckResult ?: GapsDraggingCheckResult()).gapsCheckingResults
 
     LongPressDraggable(modifier = Modifier) {
-
         Column(modifier = modifier) {
             HorizontalMultilineGrid(
                 spacing = 8.dp
@@ -43,7 +45,12 @@ internal fun GapDraggingComponent(
                                     .widthIn(64.dp)
                                     .height(28.dp),
                                 item = item,
-                                checkingResult = checkResults[i]
+                                checkingResult = checkResults[i],
+                                onDragAnswer = { answer ->
+                                    answer?.let {
+                                        onChangeGapValue(i, answer)
+                                    }
+                                }
                             )
                         }
                         is GapDraggingTextItem.Word -> {
@@ -80,26 +87,35 @@ internal fun GapDraggingComponent(
 private fun GapItem(
     modifier: Modifier,
     item: GapDraggingTextItem.Gap,
-    checkingResult: Boolean?
+    checkingResult: Boolean?,
+    onDragAnswer: (String?) -> Unit
 ) {
-    val boxColor = when (checkingResult) {
-        true -> AppColors.primaryGreen
-        false -> AppColors.primaryRed
-        null -> AppColors.grayBackground
-    }
+    DropTarget<String>(
+        modifier = Modifier
+    ) { answer ->
+        onDragAnswer(answer)
 
-    Box(
-        modifier = modifier.background(
-            color = boxColor, shape = RoundedCornerShape(4.dp)
-        ), contentAlignment = Alignment.Center
-    ) {
-        if (item.value != null) {
-            Text(
-                modifier = Modifier,
-                text = item.value,
-                fontSize = 18.sp,
-                lineHeight = 20.sp,
-            )
+        val boxColor = when (checkingResult) {
+            true -> AppColors.primaryGreen
+            false -> AppColors.primaryRed
+            null -> AppColors.grayBackground
+        }
+
+        Box(
+            modifier = modifier.background(
+                color = boxColor,
+                shape = RoundedCornerShape(4.dp)
+            ),
+            contentAlignment = Alignment.Center
+        ) {
+            if (item.value != null) {
+                Text(
+                    modifier = Modifier,
+                    text = item.value,
+                    fontSize = 18.sp,
+                    lineHeight = 20.sp,
+                )
+            }
         }
     }
 }
@@ -109,60 +125,80 @@ private fun TipItem(
     modifier: Modifier,
     text: String
 ) {
-    Box(
-        modifier = modifier
-            .background(
+    DragTarget(modifier = Modifier, dataToDrop = text) {
+        Box(
+            modifier = modifier.background(
                 color = AppColors.primaryOrange,
                 shape = RoundedCornerShape(4.dp)
-            ), contentAlignment = Alignment.Center
-    ) {
-        Text(
-            modifier = Modifier,
-            text = text,
-            fontSize = 18.sp,
-            lineHeight = 20.sp,
-        )
+            ),
+            contentAlignment = Alignment.Center
+        ) {
+            Text(
+                modifier = Modifier,
+                text = text,
+                fontSize = 18.sp,
+                lineHeight = 20.sp,
+            )
+        }
     }
 }
 
 @Preview(showBackground = true)
 @Composable
 internal fun GapDraggingComponentPreview() {
-    GapDraggingComponent(modifier = Modifier.padding(16.dp), state = GapDraggingItemState(
-        id = "1", questionText = "Заполните пропуски в тексте", items = listOf(
-            GapDraggingTextItem.Word("У"),
-            GapDraggingTextItem.Word("лукоморья"),
-            GapDraggingTextItem.Gap(null),
-            GapDraggingTextItem.Word("зеленый."),
-            GapDraggingTextItem.Word("Злотая"),
-            GapDraggingTextItem.Gap(null),
-            GapDraggingTextItem.Word("на"),
-            GapDraggingTextItem.Gap(null),
-            GapDraggingTextItem.Word("том."),
-        ), gapsCheckResult = null, tips = listOf(
-            "дуб", "цепь", "дубе"
-        )
-    ), onChangeGapValue = { _, _ -> })
+    GapDraggingComponent(
+        modifier = Modifier.padding(16.dp),
+        state = GapDraggingItemState(
+            id = "1",
+            questionText = "Заполните пропуски в тексте",
+            items = listOf(
+                GapDraggingTextItem.Word("У"),
+                GapDraggingTextItem.Word("лукоморья"),
+                GapDraggingTextItem.Gap(null),
+                GapDraggingTextItem.Word("зеленый."),
+                GapDraggingTextItem.Word("Злотая"),
+                GapDraggingTextItem.Gap(null),
+                GapDraggingTextItem.Word("на"),
+                GapDraggingTextItem.Gap(null),
+                GapDraggingTextItem.Word("том."),
+            ),
+            gapsCheckResult = null,
+            tips = listOf(
+                "дуб",
+                "цепь",
+                "дубе"
+            )
+        ),
+        onChangeGapValue = { _, _ -> }
+    )
 }
 
 @Preview(showBackground = true)
 @Composable
 internal fun GapDraggingComponentPreview2() {
-    GapDraggingComponent(modifier = Modifier.padding(16.dp), state = GapDraggingItemState(
-        id = "1", questionText = "Заполните пропуски в тексте", items = listOf(
-            GapDraggingTextItem.Word("У"),
-            GapDraggingTextItem.Word("лукоморья"),
-            GapDraggingTextItem.Gap("дуб"),
-            GapDraggingTextItem.Word("зеленый."),
-            GapDraggingTextItem.Word("Злотая"),
-            GapDraggingTextItem.Gap(null),
-            GapDraggingTextItem.Word("на"),
-            GapDraggingTextItem.Gap("дубе"),
-            GapDraggingTextItem.Word("том."),
-        ), gapsCheckResult = GapsDraggingCheckResult(
-            gapsCheckingResults = mapOf(2 to true, 7 to true)
-        ), tips = listOf(
-            "цепь"
-        )
-    ), onChangeGapValue = { _, _ -> })
+    GapDraggingComponent(
+        modifier = Modifier.padding(16.dp),
+        state = GapDraggingItemState(
+            id = "1",
+            questionText = "Заполните пропуски в тексте",
+            items = listOf(
+                GapDraggingTextItem.Word("У"),
+                GapDraggingTextItem.Word("лукоморья"),
+                GapDraggingTextItem.Gap("дуб"),
+                GapDraggingTextItem.Word("зеленый."),
+                GapDraggingTextItem.Word("Злотая"),
+                GapDraggingTextItem.Gap(null),
+                GapDraggingTextItem.Word("на"),
+                GapDraggingTextItem.Gap("дубе"),
+                GapDraggingTextItem.Word("том."),
+            ),
+            gapsCheckResult = GapsDraggingCheckResult(
+                gapsCheckingResults = mapOf(2 to true, 7 to true)
+            ),
+            tips = listOf(
+                "цепь"
+            )
+        ),
+        onChangeGapValue = { _, _ -> }
+    )
 }
