@@ -32,8 +32,8 @@ internal fun GapDraggingComponent(
 ) {
     val checkResults = (state.gapsCheckResult ?: GapsDraggingCheckResult()).gapsCheckingResults
 
-    LongPressDraggable(modifier = Modifier) {
-        Column(modifier = modifier) {
+    LongPressDraggable(modifier = modifier) {
+        Column {
             HorizontalMultilineGrid(
                 spacing = 8.dp
             ) {

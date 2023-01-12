@@ -31,7 +31,23 @@ internal class GapDraggingViewModel(
         }
         val isCheckEnabled = items.filterIsInstance<GapDraggingTextItem.Gap>()
             .all { it.value.orEmpty().isNotEmpty() }
-        currentViewState.tryEmit(state.copy(items = items, isCheckEnabled = isCheckEnabled))
+
+        var removedOneTime = false
+        val newTipsList = state.tips.toMutableList().filter {
+            if (it == newValue && !removedOneTime) {
+                removedOneTime = true
+                false
+            } else {
+                true
+            }
+        }
+        currentViewState.tryEmit(
+            state.copy(
+                items = items,
+                isCheckEnabled = isCheckEnabled,
+                tips = newTipsList
+            )
+        )
     }
 
     fun onClickCheck() {

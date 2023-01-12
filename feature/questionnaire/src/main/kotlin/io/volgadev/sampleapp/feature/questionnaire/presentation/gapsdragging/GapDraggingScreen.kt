@@ -70,7 +70,9 @@ private fun GapDraggingScreenContent(
                     text = item.questionText
                 )
                 GapDraggingComponent(
-                    modifier = Modifier.padding(16.dp),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp),
                     state = item,
                     onChangeGapValue = onChangeGapValue
                 )
