@@ -128,6 +128,7 @@ internal class DragTargetInfo {
     var dragOffset by mutableStateOf(Offset.Zero)
     var draggableComposable by mutableStateOf<(@Composable () -> Unit)?>(null)
     var dataToDrop by mutableStateOf<Any?>(null)
+
     override fun toString(): String {
         return "DragTargetInfo(isDragging=$isDragging, position=$dragPosition, offset=$dragOffset)"
     }
