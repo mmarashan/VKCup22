@@ -23,23 +23,32 @@ internal class GapDraggingViewModel(
         restartViewState()
     }
 
-    fun onGapInputChange(index: Int, newValue: String) {
+    fun onGapInputChange(index: Int, newValue: String?) {
         val state = currentViewState.value
         val items = state.items.toMutableList()
-        if (items[index] is GapDraggingTextItem.Gap) {
-            items[index] = GapDraggingTextItem.Gap(newValue)
-        }
+        val textItem = items[index]
+        if (textItem !is GapDraggingTextItem.Gap) return
+        if (textItem.value == newValue) return
+
+        val isClearing = newValue == null
+        val oldValue: String? = textItem.value
+        items[index] = GapDraggingTextItem.Gap(newValue)
+
         val isCheckEnabled = items.filterIsInstance<GapDraggingTextItem.Gap>()
             .all { it.value.orEmpty().isNotEmpty() }
 
-        var removedOneTime = false
-        val newTipsList = state.tips.toMutableList().filter {
-            if (it == newValue && !removedOneTime) {
-                removedOneTime = true
-                false
-            } else {
-                true
+        var oneItemWasRemoved = false
+        val newTipsList: List<String> = if (!isClearing) {
+            state.tips.toMutableList().filter {
+                if (it == newValue && !oneItemWasRemoved) {
+                    oneItemWasRemoved = true
+                    false
+                } else {
+                    true
+                }
             }
+        } else {
+            state.tips.plus(oldValue.orEmpty())
         }
         currentViewState.tryEmit(
             state.copy(

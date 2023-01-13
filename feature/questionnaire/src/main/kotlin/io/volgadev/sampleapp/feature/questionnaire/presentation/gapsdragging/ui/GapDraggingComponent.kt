@@ -1,6 +1,7 @@
 package io.volgadev.sampleapp.feature.questionnaire.presentation.gapsdragging.ui
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -28,7 +29,7 @@ import io.volgadev.sampleapp.feature.questionnaire.presentation.gapsdragging.mod
 internal fun GapDraggingComponent(
     modifier: Modifier,
     state: GapDraggingItemState,
-    onChangeGapValue: (Int, String) -> Unit
+    onChangeGapValue: (Int, String?) -> Unit
 ) {
     val checkResults = (state.gapsCheckResult ?: GapsDraggingCheckResult()).gapsCheckingResults
 
@@ -47,9 +48,7 @@ internal fun GapDraggingComponent(
                                 item = item,
                                 checkingResult = checkResults[i],
                                 onDragAnswer = { answer ->
-                                    answer?.let {
-                                        onChangeGapValue(i, answer)
-                                    }
+                                    onChangeGapValue(i, answer)
                                 }
                             )
                         }
@@ -93,7 +92,9 @@ private fun GapItem(
     DropTarget<String>(
         modifier = Modifier
     ) { answer ->
-        onDragAnswer(answer)
+        answer?.let {
+            onDragAnswer(answer)
+        }
 
         val boxColor = when (checkingResult) {
             true -> AppColors.primaryGreen
@@ -101,17 +102,22 @@ private fun GapItem(
             null -> AppColors.grayBackground
         }
 
+        val gapText = item.value
         Box(
-            modifier = modifier.background(
-                color = boxColor,
-                shape = RoundedCornerShape(4.dp)
-            ),
+            modifier = modifier
+                .background(
+                    color = boxColor,
+                    shape = RoundedCornerShape(4.dp)
+                )
+                .clickable {
+                    if (gapText?.isNotEmpty() == true) onDragAnswer(null)
+                },
             contentAlignment = Alignment.Center
         ) {
-            if (item.value != null) {
+            if (gapText != null) {
                 Text(
                     modifier = Modifier,
-                    text = item.value,
+                    text = gapText,
                     fontSize = 18.sp,
                     lineHeight = 20.sp,
                 )

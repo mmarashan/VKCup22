@@ -52,7 +52,7 @@ private fun GapDraggingScreenContent(
     onClickBack: () -> Unit,
     onClickNext: () -> Unit,
     onClickCheck: () -> Unit,
-    onChangeGapValue: (Int, String) -> Unit
+    onChangeGapValue: (Int, String?) -> Unit
 ) {
     QuestionnaireDemoScreen(
         modifier = modifier,
