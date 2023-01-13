@@ -31,10 +31,27 @@ internal class QuestionnaireDemoRepositoryImpl : QuestionnaireDemoRepository {
         )
     }
 
-    override fun getMatchingItems(): List<QuestionType.Matching> {
+    override fun getPairMappingItems(): List<QuestionType.PairMapping> {
         return listOf(
-            QuestionType.Matching(
-                id = "1", questionText = "", leftItems = listOf(), rightItems = listOf()
+            QuestionType.PairMapping(
+                id = "1",
+                questionText = "Найди соответствие",
+                itemsMap = mapOf(
+                    "Аргентина" to "Месси",
+                    "Португалия" to "Роналдо",
+                    "Бразилия" to "Неймар",
+                    "Россия " to "Акинфеев"
+                )
+            ),
+            QuestionType.PairMapping(
+                id = "2",
+                questionText = "Найди соответствие",
+                itemsMap = mapOf(
+                    "Аргентина" to "Буэнос-Айрос",
+                    "Португалия" to "Лиссабон",
+                    "Бразилия" to "Рио-Де-Жанейро",
+                    "Россия " to "Москва"
+                )
             )
         )
     }
@@ -42,13 +59,19 @@ internal class QuestionnaireDemoRepositoryImpl : QuestionnaireDemoRepository {
     override fun getRatingItems(): List<QuestionType.Rating> {
         return listOf(
             QuestionType.Rating(
-                id = "1", questionText = "Как вам этот пост про чемпионат мира?", maxValue = 5
+                id = "1",
+                questionText = "Как вам этот пост про чемпионат мира?",
+                maxValue = 5
             ),
             QuestionType.Rating(
-                id = "2", questionText = "Насколько хотите еще?", maxValue = 5
+                id = "2",
+                questionText = "Насколько хотите еще?",
+                maxValue = 5
             ),
             QuestionType.Rating(
-                id = "3", questionText = "Двигаемся дальше?", maxValue = 5
+                id = "3",
+                questionText = "Двигаемся дальше?",
+                maxValue = 5
             )
         )
     }

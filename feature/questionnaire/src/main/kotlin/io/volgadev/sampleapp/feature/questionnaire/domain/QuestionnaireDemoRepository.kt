@@ -6,7 +6,7 @@ internal interface QuestionnaireDemoRepository {
 
     fun getQuizItems(): List<QuestionType.Quiz>
 
-    fun getMatchingItems(): List<QuestionType.Matching>
+    fun getPairMappingItems(): List<QuestionType.PairMapping>
 
     fun getRatingItems(): List<QuestionType.Rating>
 

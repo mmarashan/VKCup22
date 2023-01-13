@@ -20,27 +20,12 @@ internal sealed class QuestionType(
 
     /**
      * Сопоставление элементов левого столба с правым
-     * @property leftItems левые значения
-     * @property rightItems правые значения
+     * @property itemsMap сопоставленные ключ-значение (дб перемешаны для пользователя)
      */
-    data class Matching(
+    data class PairMapping(
         override val id: String,
         override val questionText: String,
-        val leftItems: List<String>,
-        val rightItems: List<String>
-    ) : QuestionType(id, questionText)
-
-    /**
-     * Подстановка пропусков
-     * @property textWithPlaceholders текст с плейсхолдерами [placeholder]
-     * @property answers варианты для подстановки
-     */
-    data class GapSubstitution(
-        override val id: String,
-        override val questionText: String,
-        val textWithPlaceholders: String,
-        val placeholder: String = "[]",
-        val answers: List<String>
+        val itemsMap: Map<String, String>
     ) : QuestionType(id, questionText)
 
     /**
