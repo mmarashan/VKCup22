@@ -125,7 +125,10 @@ private fun TipItem(
     modifier: Modifier,
     text: String
 ) {
-    DragTarget(modifier = Modifier, dataToDrop = text) {
+    DragTarget(
+        modifier = Modifier,
+        dataToDrop = text
+    ) {
         Box(
             modifier = modifier.background(
                 color = AppColors.primaryOrange,
@@ -134,7 +137,7 @@ private fun TipItem(
             contentAlignment = Alignment.Center
         ) {
             Text(
-                modifier = Modifier,
+                modifier = Modifier.padding(horizontal = 8.dp),
                 text = text,
                 fontSize = 18.sp,
                 lineHeight = 20.sp,
@@ -196,7 +199,7 @@ internal fun GapDraggingComponentPreview2() {
                 gapsCheckingResults = mapOf(2 to true, 7 to true)
             ),
             tips = listOf(
-                "цепь"
+                "русалка"
             )
         ),
         onChangeGapValue = { _, _ -> }

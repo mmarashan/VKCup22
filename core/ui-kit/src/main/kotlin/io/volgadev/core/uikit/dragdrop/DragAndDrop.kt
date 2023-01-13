@@ -1,6 +1,5 @@
 package io.volgadev.core.uikit.dragdrop
 
-import android.util.Log
 import androidx.compose.foundation.gestures.detectDragGesturesAfterLongPress
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
@@ -31,18 +30,23 @@ fun LongPressDraggable(
 ) {
     val state = remember { DragTargetInfo() }
 
-    Log.d("LongPressDraggable", "state = $state")
+    var boxPosition by remember { mutableStateOf(Offset.Zero) }
+
     CompositionLocalProvider(
         LocalDragTargetInfo provides state
     ) {
-        Box(modifier = modifier) {
+        Box(
+            modifier = modifier.onGloballyPositioned {
+                boxPosition = it.localToWindow(Offset.Zero)
+            }
+        ) {
             content()
             if (state.isDragging) {
                 var targetSize by remember { mutableStateOf(IntSize.Zero) }
                 Box(
                     modifier = Modifier
                         .graphicsLayer {
-                            val offset = (state.dragPosition + state.dragOffset)
+                            val offset = (state.dragPosition + state.dragOffset - boxPosition)
                             scaleX = DRAG_ITEM_SCALE
                             scaleY = DRAG_ITEM_SCALE
                             alpha = if (targetSize == IntSize.Zero) 0f else DRAG_ITEM_ALPHA
@@ -72,10 +76,9 @@ fun <T> DragTarget(
     Box(
         modifier = modifier
             .onGloballyPositioned {
-                // Проблема в стартовом расчете currentPosition
                 currentPosition = it.localToWindow(Offset.Zero)
             }
-            .pointerInput(Unit) {
+            .pointerInput(dataToDrop) {
                 detectDragGesturesAfterLongPress(
                     onDragStart = {
                         currentState.dataToDrop = dataToDrop
@@ -94,8 +97,10 @@ fun <T> DragTarget(
                     onDragCancel = {
                         currentState.dragOffset = Offset.Zero
                         currentState.isDragging = false
-                    })
-            }) {
+                    }
+                )
+            }
+    ) {
         content()
     }
 }
@@ -110,14 +115,18 @@ fun <T> DropTarget(
     val dragOffset = dragInfo.dragOffset
     var isCurrentDropTarget by remember { mutableStateOf(false) }
 
-    Box(modifier = modifier.onGloballyPositioned {
-        it.boundsInWindow().let { rect ->
-            isCurrentDropTarget = rect.contains(dragPosition + dragOffset)
+    Box(
+        modifier = modifier.onGloballyPositioned {
+            it.boundsInWindow().let { rect ->
+                isCurrentDropTarget = rect.contains(dragPosition + dragOffset)
+            }
         }
-    }) {
+    ) {
         val data = if (isCurrentDropTarget && !dragInfo.isDragging) {
             dragInfo.dataToDrop as? T?
-        } else null
+        } else {
+            null
+        }
         content(data)
     }
 }
