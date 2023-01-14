@@ -37,6 +37,8 @@ internal class PairMappingViewModel(
                 } else {
                     true
                 }
+            }.let {
+                if (oldValue.value != null) it.plus(oldValue.value) else it
             }
         } else {
             state.freeItems.plus(oldValue.value.orEmpty())

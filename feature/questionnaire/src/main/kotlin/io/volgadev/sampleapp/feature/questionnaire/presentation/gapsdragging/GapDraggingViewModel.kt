@@ -46,6 +46,8 @@ internal class GapDraggingViewModel(
                 } else {
                     true
                 }
+            }.let {
+                if (oldValue != null) it.plus(oldValue) else it
             }
         } else {
             state.tips.plus(oldValue.orEmpty())
