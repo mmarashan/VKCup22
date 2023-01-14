@@ -35,7 +35,7 @@ internal class QuestionnaireDemoRepositoryImpl : QuestionnaireDemoRepository {
         return listOf(
             QuestionType.PairMapping(
                 id = "1",
-                questionText = "Найди соответствие",
+                questionText = "Найдите соответствие",
                 itemsMap = mapOf(
                     "Аргентина" to "Месси",
                     "Португалия" to "Роналдо",
@@ -45,7 +45,7 @@ internal class QuestionnaireDemoRepositoryImpl : QuestionnaireDemoRepository {
             ),
             QuestionType.PairMapping(
                 id = "2",
-                questionText = "Найди соответствие",
+                questionText = "Найдите соответствие",
                 itemsMap = mapOf(
                     "Аргентина" to "Буэнос-Айрос",
                     "Португалия" to "Лиссабон",

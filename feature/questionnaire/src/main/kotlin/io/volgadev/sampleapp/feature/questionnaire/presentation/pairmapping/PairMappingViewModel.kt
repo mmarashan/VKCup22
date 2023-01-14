@@ -22,7 +22,7 @@ internal class PairMappingViewModel(
         restartViewState()
     }
 
-    fun onGapInputChange(key: String, newValue: String?) {
+    fun onChangePairValue(key: String, newValue: String?) {
         val state = currentViewState.value
         val oldValue = state.pairs.getValue(key)
         if (oldValue.value == newValue) return
@@ -53,7 +53,7 @@ internal class PairMappingViewModel(
     fun onClickCheck() {
         val question = currentItem.value as QuestionType.PairMapping
         val state = currentViewState.value
-        if (state.freeItems.isNotEmpty()) throw IllegalStateException()
+        check(state.freeItems.isNotEmpty())
 
         val newPairs = state.pairs.keys.associateWith {
             val value = state.pairs.getValue(it).value
