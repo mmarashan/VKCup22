@@ -10,5 +10,6 @@ object Modules {
 
     object Feature {
         const val dzenTopics = ":feature:dzen-topics"
+        const val questionnaire = ":feature:questionnaire"
     }
 }

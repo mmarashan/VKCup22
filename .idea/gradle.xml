@@ -18,6 +18,7 @@
             <option value="$PROJECT_DIR$/core/ui-kit" />
             <option value="$PROJECT_DIR$/feature" />
             <option value="$PROJECT_DIR$/feature/dzen-topics" />
+            <option value="$PROJECT_DIR$/feature/questionnaire" />
           </set>
         </option>
       </GradleProjectSettings>

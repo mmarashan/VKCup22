@@ -19,6 +19,7 @@
       <module name="VKCup22.core.network" target="11" />
       <module name="VKCup22.core.ui-kit" target="11" />
       <module name="VKCup22.feature.dzen-topics" target="11" />
+      <module name="VKCup22.feature.questionnaire" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>
