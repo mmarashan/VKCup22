@@ -6,6 +6,7 @@ import io.volgadev.sampleapp.feature.questionnaire.navigation.QuestionnaireApi
 import io.volgadev.sampleapp.feature.questionnaire.navigation.QuestionnaireImpl
 import io.volgadev.sampleapp.feature.questionnaire.presentation.gapsdragging.GapDraggingViewModel
 import io.volgadev.sampleapp.feature.questionnaire.presentation.gapsfilling.GapFillingViewModel
+import io.volgadev.sampleapp.feature.questionnaire.presentation.pairmapping.PairMappingViewModel
 import io.volgadev.sampleapp.feature.questionnaire.presentation.quiz.QuestionnaireQuizViewModel
 import io.volgadev.sampleapp.feature.questionnaire.presentation.rating.QuestionnaireRatingViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -24,5 +25,7 @@ val QuestionnaireModule = module(createdAtStart = false) {
     viewModel { GapFillingViewModel(repository = get()) }
 
     viewModel { GapDraggingViewModel(repository = get()) }
+
+    viewModel { PairMappingViewModel(repository = get()) }
 }
 

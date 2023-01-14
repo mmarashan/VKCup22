@@ -7,6 +7,7 @@ import androidx.navigation.compose.composable
 import io.volgadev.core.feature_api.FeatureApi
 import io.volgadev.sampleapp.feature.questionnaire.presentation.gapsdragging.GapDraggingScreen
 import io.volgadev.sampleapp.feature.questionnaire.presentation.gapsfilling.GapFillingScreen
+import io.volgadev.sampleapp.feature.questionnaire.presentation.pairmapping.PairMappingScreen
 import io.volgadev.sampleapp.feature.questionnaire.presentation.quiz.QuestionnaireQuizScreen
 import io.volgadev.sampleapp.feature.questionnaire.presentation.rating.QuestionnaireRatingScreen
 import io.volgadev.sampleapp.feature.questionnaire.presentation.root.QuestionnaireDemoRouteScreen
@@ -21,6 +22,7 @@ internal class QuestionnaireImpl : QuestionnaireApi {
     private val ratingScreenRoute: String = "questionnaire/rating"
     private val gapFillingScreenRoute: String = "questionnaire/gapFilling"
     private val gapDraggingScreenRoute: String = "questionnaire/gapDragging"
+    private val pairMappingScreenRoute: String = "questionnaire/pairMapping"
 
     override val rootRoute: String = "questionnaire/root"
 
@@ -36,6 +38,8 @@ internal class QuestionnaireImpl : QuestionnaireApi {
                 navController.navigate(gapFillingScreenRoute)
             }, onClickToGapDragging = {
                 navController.navigate(gapDraggingScreenRoute)
+            }, onClickToPairMapping = {
+                navController.navigate(pairMappingScreenRoute)
             })
         }
 
@@ -50,6 +54,9 @@ internal class QuestionnaireImpl : QuestionnaireApi {
         }
         navGraphBuilder.composable(gapDraggingScreenRoute) {
             GapDraggingScreen(navController = navController, modifier = modifier)
+        }
+        navGraphBuilder.composable(pairMappingScreenRoute) {
+            PairMappingScreen(navController = navController, modifier = modifier)
         }
     }
 }

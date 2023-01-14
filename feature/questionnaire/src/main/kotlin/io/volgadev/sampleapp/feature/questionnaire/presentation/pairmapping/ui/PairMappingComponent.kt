@@ -1,29 +1,24 @@
 package io.volgadev.sampleapp.feature.questionnaire.presentation.pairmapping.ui
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.widthIn
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import io.volgadev.core.uikit.composable.grid.HorizontalMultilineGrid
 import io.volgadev.core.uikit.dragdrop.DragTarget
 import io.volgadev.core.uikit.dragdrop.DropTarget
 import io.volgadev.core.uikit.dragdrop.LongPressDraggable
 import io.volgadev.core.uikit.theme.AppColors
+import io.volgadev.sampleapp.feature.questionnaire.presentation.common.ui.TextInBox
 import io.volgadev.sampleapp.feature.questionnaire.presentation.pairmapping.model.PairItemAnswer
 import io.volgadev.sampleapp.feature.questionnaire.presentation.pairmapping.model.PairMappingItemState
 
@@ -40,8 +35,7 @@ internal fun PairMappingComponent(
             ) {
                 state.pairs.forEach { (key, item) ->
                     PairItem(
-                        modifier = Modifier
-                            .fillMaxWidth(),
+                        modifier = Modifier.fillMaxWidth(),
                         key = key,
                         value = item.value,
                         checkingResult = item.checkResult,
@@ -49,20 +43,18 @@ internal fun PairMappingComponent(
                             onChangePairValue(key, answer)
                         }
                     )
-                    Spacer(modifier = Modifier.height(4.dp))
+                    Spacer(modifier = Modifier.height(16.dp))
                 }
             }
 
             Spacer(modifier = Modifier.height(32.dp))
 
             HorizontalMultilineGrid(
-                spacing = 8.dp
+                spacing = 16.dp
             ) {
                 state.freeItems.forEach { tip ->
                     TipItem(
-                        Modifier
-                            .widthIn(64.dp)
-                            .height(28.dp),
+                        Modifier,
                         text = tip
                     )
                 }
@@ -94,34 +86,24 @@ private fun PairItem(
         }
 
         Row(
-            modifier = modifier.clickable {
-                if (value?.isNotEmpty() == true) onDragAnswer(null)
-            },
-            horizontalArrangement = Arrangement.SpaceBetween
+            modifier = modifier
+                .clickable {
+                    if (value?.isNotEmpty() == true) onDragAnswer(null)
+                },
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
         ) {
-            Text(
-                modifier = Modifier
-                    .background(
-                        color = backgroundColor,
-                        shape = RoundedCornerShape(4.dp)
-                    )
-                    .padding(horizontal = 4.dp),
+            TextInBox(
+                modifier = Modifier,
                 text = key,
-                fontSize = 18.sp,
-                lineHeight = 20.sp,
+                backgroundColor = backgroundColor
             )
 
             if (value != null) {
-                Text(
-                    modifier = Modifier
-                        .background(
-                            color = backgroundColor,
-                            shape = RoundedCornerShape(4.dp)
-                        )
-                        .padding(horizontal = 4.dp),
+                TextInBox(
+                    modifier = Modifier,
                     text = value,
-                    fontSize = 18.sp,
-                    lineHeight = 20.sp,
+                    backgroundColor = backgroundColor
                 )
             }
         }
@@ -137,22 +119,14 @@ private fun TipItem(
         modifier = Modifier,
         dataToDrop = text
     ) {
-        Box(
-            modifier = modifier.background(
-                color = AppColors.primaryOrange,
-                shape = RoundedCornerShape(4.dp)
-            ),
-            contentAlignment = Alignment.Center
-        ) {
-            Text(
-                modifier = Modifier.padding(horizontal = 8.dp),
-                text = text,
-                fontSize = 18.sp,
-                lineHeight = 20.sp,
-            )
-        }
+        TextInBox(
+            modifier = modifier,
+            text = text,
+            backgroundColor = AppColors.primaryOrange
+        )
     }
 }
+
 
 @Preview(showBackground = true)
 @Composable

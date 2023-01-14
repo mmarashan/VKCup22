@@ -16,7 +16,8 @@ internal fun QuestionnaireDemoRouteScreen(
     onClickToQuiz: () -> Unit,
     onClickToRating: () -> Unit,
     onClickToGapFilling: () -> Unit,
-    onClickToGapDragging: () -> Unit
+    onClickToGapDragging: () -> Unit,
+    onClickToPairMapping: () -> Unit
 ) {
     Column(
         modifier = modifier,
@@ -47,6 +48,13 @@ internal fun QuestionnaireDemoRouteScreen(
             text = "Перетаскивание вариантов в пропуски",
             onClick = onClickToGapDragging
         )
+
+        MainScreenButton(
+            modifier = Modifier
+                .padding(16.dp),
+            text = "Сопоставление элементов",
+            onClick = onClickToPairMapping
+        )
     }
 }
 
@@ -58,6 +66,7 @@ private fun QuestionnaireDemoRouteScreenPreview() {
         onClickToQuiz = {},
         onClickToRating = {},
         onClickToGapFilling = {},
-        onClickToGapDragging = {}
+        onClickToGapDragging = {},
+        onClickToPairMapping = {}
     )
 }

@@ -1,17 +1,13 @@
 package io.volgadev.sampleapp.feature.questionnaire.presentation.gapsdragging.ui
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.widthIn
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -21,6 +17,7 @@ import io.volgadev.core.uikit.dragdrop.DragTarget
 import io.volgadev.core.uikit.dragdrop.DropTarget
 import io.volgadev.core.uikit.dragdrop.LongPressDraggable
 import io.volgadev.core.uikit.theme.AppColors
+import io.volgadev.sampleapp.feature.questionnaire.presentation.common.ui.TextInBox
 import io.volgadev.sampleapp.feature.questionnaire.presentation.gapsdragging.model.GapDraggingItemState
 import io.volgadev.sampleapp.feature.questionnaire.presentation.gapsdragging.model.GapDraggingTextItem
 import io.volgadev.sampleapp.feature.questionnaire.presentation.gapsdragging.model.GapsDraggingCheckResult
@@ -43,8 +40,7 @@ internal fun GapDraggingComponent(
                         is GapDraggingTextItem.Gap -> {
                             GapItem(
                                 modifier = Modifier
-                                    .widthIn(64.dp)
-                                    .height(28.dp),
+                                    .widthIn(64.dp),
                                 item = item,
                                 checkingResult = checkResults[i],
                                 onDragAnswer = { answer ->
@@ -54,7 +50,7 @@ internal fun GapDraggingComponent(
                         }
                         is GapDraggingTextItem.Word -> {
                             Text(
-                                modifier = Modifier,
+                                modifier = Modifier.padding(vertical = 4.dp),
                                 text = item.value,
                                 fontSize = 18.sp,
                                 lineHeight = 20.sp,
@@ -67,13 +63,11 @@ internal fun GapDraggingComponent(
             Spacer(modifier = Modifier.height(32.dp))
 
             HorizontalMultilineGrid(
-                spacing = 8.dp
+                spacing = 16.dp
             ) {
                 state.tips.forEach { tip ->
                     TipItem(
-                        Modifier
-                            .widthIn(64.dp)
-                            .height(28.dp),
+                        modifier = Modifier,
                         text = tip
                     )
                 }
@@ -103,26 +97,14 @@ private fun GapItem(
         }
 
         val gapText = item.value
-        Box(
+        TextInBox(
             modifier = modifier
-                .background(
-                    color = boxColor,
-                    shape = RoundedCornerShape(4.dp)
-                )
                 .clickable {
                     if (gapText?.isNotEmpty() == true) onDragAnswer(null)
                 },
-            contentAlignment = Alignment.Center
-        ) {
-            if (gapText != null) {
-                Text(
-                    modifier = Modifier,
-                    text = gapText,
-                    fontSize = 18.sp,
-                    lineHeight = 20.sp,
-                )
-            }
-        }
+            text = gapText ?: "    ",
+            backgroundColor = boxColor
+        )
     }
 }
 
@@ -135,20 +117,11 @@ private fun TipItem(
         modifier = Modifier,
         dataToDrop = text
     ) {
-        Box(
-            modifier = modifier.background(
-                color = AppColors.primaryOrange,
-                shape = RoundedCornerShape(4.dp)
-            ),
-            contentAlignment = Alignment.Center
-        ) {
-            Text(
-                modifier = Modifier.padding(horizontal = 8.dp),
-                text = text,
-                fontSize = 18.sp,
-                lineHeight = 20.sp,
-            )
-        }
+        TextInBox(
+            modifier = modifier,
+            text = text,
+            backgroundColor = AppColors.primaryOrange
+        )
     }
 }
 

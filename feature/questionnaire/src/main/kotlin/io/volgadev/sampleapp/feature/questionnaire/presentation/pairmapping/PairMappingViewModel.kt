@@ -53,7 +53,7 @@ internal class PairMappingViewModel(
     fun onClickCheck() {
         val question = currentItem.value as QuestionType.PairMapping
         val state = currentViewState.value
-        check(state.freeItems.isNotEmpty())
+        check(state.freeItems.isEmpty())
 
         val newPairs = state.pairs.keys.associateWith {
             val value = state.pairs.getValue(it).value
@@ -64,7 +64,8 @@ internal class PairMappingViewModel(
         }
         currentViewState.tryEmit(
             state.copy(
-                pairs = newPairs
+                pairs = newPairs,
+                isNextEnabled = true
             )
         )
     }
