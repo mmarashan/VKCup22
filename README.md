@@ -8,6 +8,5 @@ MVVM presentation layer Architecture
 Jetpack Compose for UI + Jetpack Compose Navigation
 
 #### Show video demo:
-https://user-images.githubusercontent.com/19956405/216820019-5c82ee17-b237-4bc8-9eaf-72fa9d04e4bc.mp4
+[![DEMO_2](https://img.youtube.com/vi/RCsjIYCxKgM/hqdefault.jpg)](https://youtube.com/shorts/RCsjIYCxKgM)
 [![DEMO_2](https://img.youtube.com/vi/mLHC_2HnWwo/hqdefault.jpg)](https://youtu.be/mLHC_2HnWwo)
-
