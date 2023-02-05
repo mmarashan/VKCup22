@@ -11,15 +11,15 @@
       <module name="Ktor_example.core.network" target="11" />
       <module name="Ktor_example.feature.dzen-topics-picker" target="11" />
       <module name="KtorExample.buildSrc" target="1.8" />
-      <module name="VKCup22.buildSrc" target="11" />
-      <module name="VKCup22.buildSrc.main" target="11" />
-      <module name="VKCup22.buildSrc.test" target="11" />
-      <module name="VKCup22.core.common" target="11" />
-      <module name="VKCup22.core.feature-api" target="11" />
+      <module name="VKCup22.buildSrc" target="17" />
+      <module name="VKCup22.buildSrc.main" target="17" />
+      <module name="VKCup22.buildSrc.test" target="17" />
+      <module name="VKCup22.core.common" target="17" />
+      <module name="VKCup22.core.feature-api" target="17" />
       <module name="VKCup22.core.network" target="11" />
-      <module name="VKCup22.core.ui-kit" target="11" />
-      <module name="VKCup22.feature.dzen-topics" target="11" />
-      <module name="VKCup22.feature.questionnaire" target="11" />
+      <module name="VKCup22.core.ui-kit" target="17" />
+      <module name="VKCup22.feature.dzen-topics" target="17" />
+      <module name="VKCup22.feature.questionnaire" target="17" />
     </bytecodeTargetLevel>
   </component>
 </project>

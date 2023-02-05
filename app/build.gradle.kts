@@ -12,10 +12,6 @@ plugins {
 }
 
 android {
-//    signingConfigs {
-//        create("release") {
-//        }
-//    }
     compileSdk = AndroidProject.compileSdkVersion
     buildToolsVersion = AndroidProject.buildToolsVersion
 
@@ -26,14 +22,6 @@ android {
         versionName = "1.0"
     }
 
-//    buildTypes {
-//        debug {
-//            /* Запрещает использовать default debug keystore и использует ключи подписи из flavor. */
-//            isDebuggable = false
-//            isShrinkResources = true
-//            isMinifyEnabled = true
-//        }
-//    }
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
